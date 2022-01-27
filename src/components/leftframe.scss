@@ -1,0 +1,69 @@
+@import "../_mixin.scss";
+
+.left-frame {
+	@include fill-container;
+	display: flex;
+	flex-direction: column;
+	grid-column: 1 / span 1;
+	background: $contrast-color;
+	overflow: hidden;
+	z-index: 5000;
+
+	@media screen and (max-width: 960px) {
+        grid-column: unset;
+        position: fixed;
+        width: 80%;
+        max-width: 420px;
+        top: 0;
+    };
+}
+
+.left-frame-toggle-button {
+	cursor: pointer;
+	opacity: 0.6;
+	z-index: 1200;
+	&:hover {
+		opacity: 1;
+	}
+
+    @media screen and (max-width: 960px) {
+        transform: scale(0.8);
+    }
+}
+
+.left-frame-header-field {
+	width: 100%;
+	height: 44px;
+	margin-top: 4px;
+	border-bottom: 1px solid $contrast-shade;
+}
+
+.year-separator {
+	@include left-frame-year-text($color: $contrast-shade);
+	display: flex;
+	justify-content: flex-end;
+	padding: 0 6px;
+	border-bottom: 1px solid $contrast-shade;
+}
+
+.left-frame-content-field {
+	@include fill-container;
+	@include left-frame-content-text($color: $contrast-text-color);
+	overflow: hidden;
+	padding: 0 3px 0 3px;
+}
+
+.left-frame-list-item {
+	@include left-frame-content-text($color: $contrast-text-color);
+	cursor: pointer;
+	padding: 2px 0px 2px 3px;
+	margin: 3px 0px 3px 0px;
+
+	&:hover {
+		background-color: $contrast-shade;
+	}
+}
+
+.list-item-selected {
+	background: $contrast-shade;
+}

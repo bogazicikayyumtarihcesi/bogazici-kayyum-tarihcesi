@@ -1,0 +1,164 @@
+@import "../_mixin.scss";
+
+$top-offset: 12px;
+
+@mixin widescreen-top-offset($defaultOffset: 0, $scale: 1) {
+	top: calc(#{$defaultOffset} + #{$scale} * #{$top-offset});
+
+	@media (min-aspect-ratio: 3 / 1) {
+		top: calc(#{$defaultOffset} + 2 * #{$scale} * #{$top-offset});
+	}
+}
+
+.calendar-outer-container {
+	@include fill-container;
+	grid-row: 3 / span 1;
+	position: relative;
+	@media screen and (max-width: 960px) {
+		display: none;
+	}
+}
+
+.calendar-container {
+	@include basic-card($radius: 0px);
+	position: relative;
+	width: 100%;
+	height: 100%;
+	margin: auto;
+	overflow: hidden;
+}
+
+.calendar-month {
+	@include flex-center;
+	position: absolute;
+	z-index: 50;
+	@include widescreen-top-offset(calc(30% - 10px));
+
+	&.focused {
+		@include widescreen-top-offset(calc(30% - 20px));
+		transform: translateX(-10px);
+		z-index: 49;
+
+		.calendar-events-container {
+			display: block;
+			z-index: 80;
+			* {
+				display: block;
+			}
+		}
+	}
+
+	&:hover {
+		.calendar-events-container {
+			display: block;
+			z-index: 81;
+			visibility: visible;
+			* {
+				display: block;
+			}
+		}
+	}
+}
+
+.mon1 {
+	@include widescreen-top-offset(calc(30% - 13px));
+
+	&.focused {
+		@include widescreen-top-offset(calc(30% - 20px));
+	}
+}
+
+.calendar-month-eventful {
+	@include flex-center;
+	position: absolute;
+	cursor: pointer;
+}
+
+.calendar-year-name {
+	@include calendar-year-text($color: $text-color);
+	width: max-content;
+	height: max-content;
+
+	position: absolute;
+	@include widescreen-top-offset(-30px, 0.1);
+	opacity: 0.8;
+}
+
+.calendar-month-name {
+	@include calendar-month-text($color: $text-color);
+	width: max-content;
+	height: max-content;
+	position: absolute;
+	bottom: -19px;
+	opacity: 0.6;
+}
+
+.calendar-events-container {
+	@include calendar-event-text($color: $text-color);
+	display: none;
+	position: absolute;
+	top: calc(5px + #{$top-offset});
+	left: -14px;
+	padding: 32px 1px 1px 0px;
+	height: fit-content;
+	max-height: 180px;
+	width: max-content;
+
+	@media (min-aspect-ratio: 276 / 100) {
+		display: none !important;
+	}
+}
+
+.calendar-events-scrollarea {
+	padding-left: 30px;
+	width: max-content;
+	height: fit-content;
+	max-height: 90px;
+	overflow-y: hidden;
+	overflow-x: visible;
+
+
+	@media (min-aspect-ratio: 2 / 1), (max-height: 920px) {
+		max-height: 67.5px;
+	}
+
+	@media (min-aspect-ratio: 2010 / 1000), (max-height: 787px) {
+		max-height: 45px;
+	}
+
+	@media (min-aspect-ratio: 247 / 100), (max-height: 666px) {
+		max-height: 22.5px;
+	}
+}
+
+.calendar-single-event {
+	@include calendar-event-text;
+	display: flex;
+	width: max-content;
+	height: min-content;
+	position: relative;
+	margin-bottom: 3px;
+	padding-top: 2px;
+	&.focused,
+	:hover.calendar-event-title {
+		border-bottom: 1px solid $text-color;
+	}
+}
+
+.calendar-event-bullet {
+	position: absolute;
+	width: fit-content;
+	height: fit-content;
+	left: -18px;
+	top: 4px;
+}
+
+.calendar-line {
+	position: absolute;
+	@include widescreen-top-offset(30%);
+
+	left: 0px;
+
+	height: 1px;
+	overflow: visible;
+}

@@ -1,0 +1,19 @@
+@import "../_mixin.scss";
+
+
+.copy-message{
+    @include unselectable-text;
+    @include copy-message-text($color: aliceblue);
+    @include basic-card($radius: 8px);
+    background-color: $tertiary-color;
+    padding: 3px 6px;
+    position: absolute;
+    top: -22px;
+}
+
+.share-copy {
+    @include unselectable-text;
+    cursor: pointer;
+    position: relative;
+    overflow: visible;
+}

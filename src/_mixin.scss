@@ -1,0 +1,236 @@
+@import url("https://fonts.googleapis.com/css2?family=Fira+Sans:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;1,100;1,200;1,300;1,400;1,500;1,600;1,700&display=swap");
+@import url("https://fonts.googleapis.com/css2?family=Fira+Sans+Condensed:wght@100;200;300;400;500;600;700&display=swap");
+@import url("https://fonts.googleapis.com/css2?family=Fira+Sans+Extra+Condensed:wght@100;200;300;400;500;600;700;800;900&display=swap");
+@import url("https://fonts.googleapis.com/css2?family=Rubik:wght@300;400;500;600;700;800;900&display=swap");
+@import url('https://fonts.googleapis.com/css2?family=Fira+Mono&display=swap');
+
+$fira-sans: "Fira Sans", sans-serif;
+$fira-condensed: "Fira Sans Condensed", sans-serif;
+$fira-extra-condensed: "Fira Sans Extra Condensed", sans-serif;
+$rubik: "Rubik", sans-serif;
+
+$main-font: $fira-sans;
+$condensed: $fira-condensed;
+$extra-condensed: $fira-extra-condensed;
+$title-font: $rubik;
+$monospace: 'Fira Mono', monospace;
+
+// OLD THEME
+// $primary-color: hsl(218, 40%, 34%);
+// $secondary-color: hsl(218, 20%, 59%);
+// $tertiary-color: hsl(218, 10%, 36%);
+// $text-highlight: rgb(255, 101, 67);
+
+$text-color: aliceblue;
+$text-secondary-color: grey;
+// $text-highlight: #C26921;
+$text-highlight: #C26921;
+
+// $primary-color: hsl(218, 26%, 34%);
+$primary-color: hsl(218, 18%, 48%);
+// $secondary-color: hsl(218, 20%, 49%);
+$secondary-color: hsl(218, 15%, 40%);
+$tertiary-color: hsl(218, 10%, 36%);
+// $basic-box-background: hsla(218, 16%, 25%, 0.98);
+$basic-box-background: hsla(218, 20%, 25%, 0.98);
+$dark-background: hsl(218, 10%, 20%);
+
+$contrast-color: hsl(0, 0%, 94%);
+$contrast-shade: hsl(0, 0%, 63%);
+$contrast-text-color: black;
+
+@mixin flex-center {
+	display: flex;
+	align-items: center;
+	justify-content: center;
+}
+
+@mixin fill-container {
+	width: 100%;
+	height: 100%;
+}
+
+@mixin clear-button {
+	border: none;
+	background: none;
+	cursor: pointer;
+}
+
+@mixin default-text($color: aliceblue) {
+	color: $color;
+	font-family: $main-font;
+	font-weight: 300;
+}
+
+@mixin link($color: aliceblue) {
+	color: $color;
+	cursor: pointer;
+
+	&:hover {
+		color: $text-highlight;
+	}
+
+}
+
+@mixin main-header-text($color: aliceblue) {
+	color: $color;
+	font-family: $title-font;
+	font-weight: 900;
+	font-size: 56px;
+	-webkit-text-stroke: 1px black;
+
+	@media (max-width: 1701px) {
+	font-size: 50px;		
+	}
+	
+	@media (max-width: 1470px) {
+	font-size: 45px;		
+	}
+
+	@media (max-width: 1325px) {
+	font-size: 40px;		
+	}
+
+	@media (max-width: 1170px) {
+	font-size: 35px;		
+	}
+
+	@media (max-width: 1050px) {
+	font-size: 30px;		
+	}
+}
+
+@mixin copy-message-text($color: aliceblue) {
+	color: $color;
+	font-family: $extra-condensed;
+	font-weight: 300;
+	font-size: 12px;
+	text-align: center;
+}
+
+@mixin kayyum-title-text($color: $text-color) {
+	color: $color;
+	font-family: $extra-condensed;
+	font-size: 14px;
+	font-weight: 200;
+	text-align: left;
+}
+
+@mixin kayyum-name-text($color: $text-color) {
+	color: $color;
+	font-family: $main-font;
+	font-size: 18px;
+	font-weight: 300;
+	text-align: left;
+}
+
+@mixin kayyum-count-text($color: $text-color) {
+	color: $color;
+	font-family: $extra-condensed;
+	font-size: 24px;
+	font-weight: 200;
+	text-align: left;
+}
+
+@mixin kayyum-streak-text($color: $text-color) {
+	color: $color;
+	font-family: $condensed;
+	font-size: 18px;
+	font-weight: 200;
+	text-align: left;
+}
+
+@mixin card-title-text($color: aliceblue) {
+	color: $color;
+	font-family: $extra-condensed;
+	font-weight: 400;
+}
+
+@mixin card-date-text($color: $text-highlight) {
+	color: $color;
+	font-family: $condensed;
+	font-size: 18px;
+	font-weight: 200;
+	text-align: right;
+}
+
+@mixin card-body-text($color: aliceblue) {
+	color: $color;
+	font-family: $main-font;
+	text-align: justify;
+}
+
+@mixin card-links-text($color: $primary-color) {
+	color: $color;
+	font-family: $main-font;
+	font-size: 14px;
+}
+
+@mixin left-frame-content-text($color: black) {
+	color: $color;
+	font-size: 16px;
+	font-family: $extra-condensed;
+	font-weight: 400;
+}
+
+@mixin left-frame-year-text($color: #a1a1a1) {
+	color: $color;
+	font-size: 20px;
+	font-family: $main-font;
+	font-weight: 700;
+}
+
+@mixin main-date-text($color: aliceblue) {
+	color: $color;
+	font-family: $main-font;
+	font-size: 140%;
+	font-weight: 500;
+	text-align: center;
+	@media screen and (max-width: 1440px) {
+		font-size: 100%;
+	}
+	@media screen and (max-width: 1080px) {
+		font-size: 75%;
+	}
+}
+
+@mixin calendar-year-text($color: aliceblue) {
+	color: $color;
+	font-family: $condensed;
+	font-weight: 600;
+	font-size: 24px;
+}
+
+@mixin calendar-month-text($color: aliceblue) {
+	color: $color;
+	font-family: $condensed;
+	font-size: 12px;
+}
+
+@mixin calendar-event-text($color: aliceblue) {
+	color: $color;
+	font-family: $main-font;
+	font-size: 14px;
+}
+
+@mixin readme-text($color: aliceblue) {
+	color: $color;
+	font-family: $main-font;
+	font-size: 20px;
+	font-weight: 300;
+	text-align: justify;
+	line-height: 135%;
+}
+
+@mixin unselectable-text {
+	-webkit-user-select: none; /* Safari */
+	-moz-user-select: none; /* Firefox */
+	-ms-user-select: none; /* IE10+/Edge */
+	user-select: none; /* Standard */
+}
+
+@mixin basic-card($radius: 32px) {
+	background-color: $basic-box-background;
+	// background-color: $dark-background;
+	border-radius: $radius;
+}

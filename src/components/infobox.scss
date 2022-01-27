@@ -1,0 +1,36 @@
+@import "../_mixin.scss";
+
+.info-box {
+	@include basic-card;
+	@include flex-center;
+	margin: 20px;
+	flex-direction: column;
+	width: 80%;
+	max-width: 800px;
+	min-width: 300px;
+}
+
+.readme-header {
+	@include main-header-text;
+	margin-top: 50px;
+	font-size: 42px;
+}
+
+.readme-text {
+    margin: 30px 40px;
+	text-indent: 5%;
+	p {
+        @include readme-text;
+		padding-bottom: 15px;
+	}
+}
+
+.readme-text-link {
+	@include link($color: $contrast-color);
+	text-decoration-thickness: .5px;
+
+}
+
+.readme-contact-link {
+	@include link($contrast-color)
+}

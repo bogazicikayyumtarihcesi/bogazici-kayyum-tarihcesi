@@ -1,0 +1,120 @@
+@import "../_mixin.scss";
+
+.event-card-container {
+	@include flex-center;
+
+	margin: 20px 0px;
+	height: calc(100% - 40px);
+	width: max-content;
+}
+
+.event-card {
+	display: flex;
+	flex-direction: column;
+	justify-content: space-between;
+	@include default-text($color: $text-color);
+	@include basic-card;
+
+	margin: 0px;
+	padding: 10px 30px 4px 30px;
+	
+	height: 100%;
+	width: 40vw;
+	
+	@media screen and (max-width: 960px) {
+		@include basic-card($radius: 16px);
+		width: 80vw;
+		max-width: 600px;
+		padding: 4px 8px;
+	}
+}
+
+.event-card-content {
+	display: grid;
+	grid-template-rows: 10% 70% 20%;
+
+	width: 100%;
+	height: calc(100% - 26px);
+	overflow: visible;
+}
+
+.event-card-header {
+	@include fill-container;
+	grid-row: 1 / span 1;
+
+	position: relative;
+
+}
+
+.event-card-date {
+	@include card-date-text($color: #eaf2f3);
+	align-self: flex-end;
+	height: 30%;
+
+	position: absolute;
+	top: 0;
+	width: 100%;
+
+	@media screen and (max-width: 1440px) {
+		font-size: 12px;
+	}
+	@media screen and (max-width: 1080px) {
+		font-size: 8px;
+	}
+}
+
+.event-card-title {
+	@include card-title-text($color: $text-color);
+	position: absolute;
+	bottom: 0;
+    padding-bottom: 3px;
+}
+
+.event-image-container {
+	@include fill-container;
+	@include flex-center;
+	align-self: center;
+
+	grid-row: 2 / span 1;
+}
+
+.event-card-image {
+	@include fill-container;
+	object-fit: cover;
+
+	&.placeholder {
+		cursor: default;
+		opacity: 0.8;
+	}
+}
+
+.item-body {
+	@include card-body-text($color: $text-color);
+	padding-top: 8px;
+	font-size: 16px;
+	grid-row: 3 / span 1;
+	
+	overflow-y: auto;
+	
+	@media screen and (max-width: 960px) {
+		padding: 8px 8px 0px 8px;
+		font-size: 12px;
+	}
+}
+
+.more-button {
+	@include clear-button;
+	@include default-text($color: $text-color);
+	font-weight: 400;
+	justify-self: center;
+	align-self: center;
+	padding: 5px 0;
+
+	&:hover {
+		color: $text-highlight;
+	}
+}
+
+.hidden {
+	display: none;
+}

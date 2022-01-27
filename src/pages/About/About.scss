@@ -1,0 +1,36 @@
+@import "../../_mixin.scss";
+
+#about {
+    @include fill-container;
+    @include flex-center;
+    align-items: flex-start;
+    overflow: auto;
+}
+
+.home-button {
+    @include flex-center;
+	opacity: 0.8;
+	position: absolute;
+	left: 20px;
+	top: 20px;
+	background-color: $contrast-color;
+	border-radius: 50%;
+	width: 36px;
+	height: 36px;
+    cursor: pointer;
+
+	* {
+		text-decoration: none;
+		@include main-header-text($color: $tertiary-color);
+        font-size: 32px;
+		-webkit-text-stroke: unset;
+        transform: translate(-1px, -2px);
+	}
+
+	&:hover {
+		opacity: 1;
+		* {
+			color: $text-highlight;
+		}
+	}
+}

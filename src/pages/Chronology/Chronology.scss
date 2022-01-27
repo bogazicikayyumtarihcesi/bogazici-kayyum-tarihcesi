@@ -1,0 +1,153 @@
+@import "../../_mixin.scss";
+
+#chronology {
+	@include fill-container;
+}
+
+.main-frame {
+	@include fill-container;
+
+	display: grid;
+	@media screen and (max-width: 960px) {
+		display: unset;
+	}
+}
+
+.main-frame-right {
+	@include fill-container;
+
+	position: relative;
+	grid-column: 2 / span 1;
+
+	display: grid;
+	grid-template-rows: 50px 2.2fr 0.72fr;
+	gap: 10px 0;
+
+	@media screen and (max-width: 960px) {
+		grid-template-rows: 50px auto;
+	}
+
+	@media (min-aspect-ratio: 2 / 1) {
+		grid-template-rows: 50px auto 19%;
+	}
+}
+
+.main-header-container {
+	grid-row: 1 / span 1;
+	width: 100%;
+	height: 80px;
+
+	display: flex;
+	align-items: center;
+	justify-content: center;
+
+
+}
+
+.main-header {
+	@include main-header-text($color: $text-color);
+	@include unselectable-text;
+	display: flex;
+	align-items: center;
+	justify-content: center;
+	height: fit-content;
+	// width: 50%;
+	// margin: 0px 25%;
+	// position: fixed;
+	// top: 4px
+	
+
+
+	// @media screen and (max-width: 960px) {
+	// 	@include flex-center;
+	// 	font-size: 24px;
+	// 	width: 70%;
+	// 	height: fit-content;
+	// 	box-shadow: 0 3px 3px -3px aliceblue;
+	// }
+}
+
+.about-button {
+	@include flex-center;
+	opacity: 0.8;
+	position: absolute;
+	right: 10px;
+	top: 7px;
+	background-color: $contrast-color;
+	border-radius: 50%;
+	width: 36px;
+	height: 36px;
+
+	cursor: pointer;
+
+	* {
+		text-decoration: none;
+		@include main-header-text($color: $tertiary-color);
+		font-size: 32px;
+		-webkit-text-stroke: unset;
+	}
+
+	&:hover {
+		opacity: 1;
+		* {
+			color: $text-highlight;
+		}
+	}
+}
+
+.main-date-display {
+	@include main-date-text;
+	@include basic-card($radius: 10px);
+	@include unselectable-text;
+
+	position: absolute;
+	left: 0;
+	right: 0;
+	margin: auto;
+	transform: translateY(-90%);
+
+	border: 1px $text-highlight solid;
+
+	width: 280px;
+	height: fit-content;
+	padding: 3px;
+	z-index: 100;
+
+	@media screen and (max-width: 1440px) {
+		width: 200px;
+	}
+	@media screen and (max-width: 1080px) {
+		width: 120px;
+	}
+	@media screen and (max-width: 960px) {
+		width: 80vw;
+		max-width: 600px;
+		text-align: right;
+		padding-right: 2vw;
+
+		margin: unset;
+		border: unset;
+		background-color: unset;
+	}
+}
+
+.nav-button {
+	cursor: pointer;
+	opacity: 0.6;
+	z-index: 1100;
+
+	&:hover {
+		opacity: 0.8;
+	}
+}
+
+.backdrop {
+	@include fill-container;
+
+	z-index: 1000;
+	background-color: black;
+	opacity: 0.6;
+	position: fixed;
+	top: 0;
+	left: 0;
+}
