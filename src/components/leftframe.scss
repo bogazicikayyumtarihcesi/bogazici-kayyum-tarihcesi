@@ -9,26 +9,14 @@
 	overflow: hidden;
 	z-index: 5000;
 
+
 	@media screen and (max-width: 960px) {
-        grid-column: unset;
-        position: fixed;
-        width: 80%;
-        max-width: 420px;
-        top: 0;
-    };
-}
-
-.left-frame-toggle-button {
-	cursor: pointer;
-	opacity: 0.6;
-	z-index: 1200;
-	&:hover {
-		opacity: 1;
+		grid-column: unset;
+		position: fixed;
+		width: 80%;
+		max-width: 420px;
+		top: 0;
 	}
-
-    @media screen and (max-width: 960px) {
-        transform: scale(0.8);
-    }
 }
 
 .left-frame-header-field {
@@ -49,7 +37,9 @@
 .left-frame-content-field {
 	@include fill-container;
 	@include left-frame-content-text($color: $contrast-text-color);
-	overflow: hidden;
+	@include hide-scrollbar;
+
+	overflow: hidden scroll;
 	padding: 0 3px 0 3px;
 }
 

@@ -21,10 +21,11 @@
 
 	display: grid;
 	grid-template-rows: 50px 2.2fr 0.72fr;
-	gap: 10px 0;
+	gap: 10px 0px;
 
 	@media screen and (max-width: 960px) {
-		grid-template-rows: 50px auto;
+		grid-template-rows: auto 1fr;
+		gap: 0px;
 	}
 
 	@media (min-aspect-ratio: 2 / 1) {
@@ -33,38 +34,22 @@
 }
 
 .main-header-container {
+	padding-top: 12px;
 	grid-row: 1 / span 1;
 	width: 100%;
-	height: 80px;
+	height: fit-content;
 
 	display: flex;
 	align-items: center;
 	justify-content: center;
-
-
 }
 
 .main-header {
 	@include main-header-text($color: $text-color);
 	@include unselectable-text;
-	display: flex;
-	align-items: center;
-	justify-content: center;
+	width: 73%;
 	height: fit-content;
-	// width: 50%;
-	// margin: 0px 25%;
-	// position: fixed;
-	// top: 4px
-	
-
-
-	// @media screen and (max-width: 960px) {
-	// 	@include flex-center;
-	// 	font-size: 24px;
-	// 	width: 70%;
-	// 	height: fit-content;
-	// 	box-shadow: 0 3px 3px -3px aliceblue;
-	// }
+	text-align: center;
 }
 
 .about-button {
@@ -82,9 +67,7 @@
 
 	* {
 		text-decoration: none;
-		@include main-header-text($color: $tertiary-color);
-		font-size: 32px;
-		-webkit-text-stroke: unset;
+		@include link-button-text($color: $tertiary-color);
 	}
 
 	&:hover {

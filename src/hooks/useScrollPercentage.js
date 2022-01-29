@@ -13,13 +13,11 @@ export default function useScrollPercentage(variant = "vertical") {
 
 		if (variant === "horizontal") {
 			scrollRef.current.scrollLeft =
-				(scrollRef.current.scrollWidth -
-					scrollRef.current.clientWidth) *
+				(scrollRef.current.scrollWidth - scrollRef.current.clientWidth) *
 				(percentage / 100);
 		} else {
 			scrollRef.current.scrollTop =
-				(scrollRef.current.scrollHeight -
-					scrollRef.current.clientHeight) *
+				(scrollRef.current.scrollHeight - scrollRef.current.clientHeight) *
 				(percentage / 100);
 		}
 	};
@@ -39,11 +37,7 @@ export default function useScrollPercentage(variant = "vertical") {
 		};
 	}, [scrollPercentage]);
 
-	return [
-		scrollRef,
-		Number.isNaN(scrollPercentage) ? 0 : scrollPercentage,
-		convertToPosition,
-	];
+	return [scrollRef, Number.isNaN(scrollPercentage) ? 0 : scrollPercentage, convertToPosition];
 }
 
 const getScrollPercentage = (element, variant) => {
@@ -57,4 +51,4 @@ const getScrollPercentage = (element, variant) => {
 		scrollDistance = element.scrollWidth - element.clientWidth;
 	}
 	return ((scrollStart / scrollDistance) * 100).toFixed(2);
-}
+};

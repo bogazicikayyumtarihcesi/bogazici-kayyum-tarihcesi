@@ -1,6 +1,5 @@
 @import "./_mixin.scss";
 
-
 * {
 	margin: 0;
 	padding: 0;
@@ -12,12 +11,12 @@
 
 #root {
 	@include flex-center;
-    min-height: 100vh;
-    width: 100vw;
+	height: 100vh;
+	width: 100vw;
 }
 
 body {
-	@include flex-center;    
+	@include flex-center;
 	background: linear-gradient(
 		145deg,
 		$primary-color 14%,

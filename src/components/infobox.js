@@ -66,7 +66,10 @@ export const InfoBox = () => {
 				<br />
 				<span>
 					Github:{" "}
-					<a className="readme-contact-link" href="https://github.com/bogazicikayyumtarihcesi/bogazici-kayyum-tarihcesi">
+					<a
+						className="readme-contact-link"
+						href="https://github.com/bogazicikayyumtarihcesi/bogazici-kayyum-tarihcesi"
+					>
 						https://github.com/bogazicikayyumtarihcesi/bogazici-kayyum-tarihcesi
 					</a>
 				</span>

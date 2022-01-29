@@ -82,6 +82,10 @@ $top-offset: 12px;
 	position: absolute;
 	@include widescreen-top-offset(-30px, 0.1);
 	opacity: 0.8;
+
+	@media (max-height: 666px) {
+		@include widescreen-top-offset(-20px, 0.1);
+	}
 }
 
 .calendar-month-name {
@@ -116,7 +120,6 @@ $top-offset: 12px;
 	max-height: 90px;
 	overflow-y: hidden;
 	overflow-x: visible;
-
 
 	@media (min-aspect-ratio: 2 / 1), (max-height: 920px) {
 		max-height: 67.5px;

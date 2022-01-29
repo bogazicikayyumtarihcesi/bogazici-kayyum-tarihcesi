@@ -1,7 +1,5 @@
 import "./PGP.scss";
 
-// import {PGP_PUB} from "../../assets/"
-
 const PGP_PUB = `-----BEGIN PGP PUBLIC KEY BLOCK-----
 
 mQGNBGHzHEEBDACyxqMpYwSH6vSxPRxCd6McRm76kpcI1Cuw8Rm6BG4kB8Pn73c8
@@ -46,6 +44,8 @@ F7P5slFDSTfSyUQpg4JcSg4+udehM0ssZ5aNkPFmqN1D7j5429yrRiVrTA==
 
 export const PGP = () => (
 	<div className="PGP-key-container">
-		<textarea className="PGP-key" readOnly onClick={(e) => e.target.select()}>{PGP_PUB}</textarea>
+		<textarea className="PGP-key" readOnly onClick={(e) => e.target.select()}>
+			{PGP_PUB}
+		</textarea>
 	</div>
 );

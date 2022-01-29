@@ -5,22 +5,12 @@ import "./calendar.scss";
 const parseYear = (dateStr) => Number(dateStr.slice(0, 4));
 const parseMonth = (dateStr) => Number(dateStr.slice(5, 7));
 
-// const palette = {
-// 	line: "#1e5fce",
-// 	bullet: "#133b80",
-// 	bulletOutline: "#1e5fce",
-// 	bulletFocusedOutline: "#ff6543",
-// 	eventful: "#ff6543",
-// 	eventfulOutline: "black",
-// };
 const palette = {
 	line: "#606b90",
 	bullet: "#424f7b",
 	bulletOutline: "#606b90",
 	bulletFocusedOutline: "#C26921",
 	eventful: "#C26921",
-	// bulletFocusedOutline: "#ff6543",
-	// eventful: "#ff6543",
 	eventfulOutline: "#424f7b",
 };
 
@@ -111,7 +101,7 @@ export const Calendar = ({
 
 	let calendarNodes = [];
 
-	// CALENDAR WITH EXTRA MONTHS FOR PADDING
+	// CALENDAR WITH EXTRA MONTHS
 	for (let year = firstEvent.year - 1; year <= lastEvent.year + 1; year++) {
 		for (
 			let month = year === firstEvent.year - 1 ? 11 : 1;
@@ -181,7 +171,7 @@ export const Calendar = ({
 
 			if (aspectRatio >= 2 || windowHeight <= 920) {
 				eventListScrollLimit = 3;
-			} else if (aspectRatio >= 2.010 || windowHeight <= 787) {
+			} else if (aspectRatio >= 2.01 || windowHeight <= 787) {
 				eventListScrollLimit = 2;
 			} else if (aspectRatio >= 2.47 || windowHeight <= 666) {
 				eventListScrollLimit = 1;
@@ -218,9 +208,8 @@ export const Calendar = ({
 								className="calendar-month-eventful"
 								onWheel={handleWheel}
 								onClick={() => {
-									setEventIndex(item.events[0].index)
+									setEventIndex(item.events[0].index);
 									setNodeHoverState(false);
-
 								}}
 							>
 								{genBullet(bulletTypes.monthEventful)}
@@ -231,13 +220,21 @@ export const Calendar = ({
 										nodeHoverState && monthFocused ? { opacity: 0.15 } : null
 									}
 									onWheel={(e) => {
-										if (item.events.length > 4) {
+										if (item.events.length >= 4) {
 											e.stopPropagation();
 											e.target.scrollBy(0, e.deltaY);
 										}
 									}}
 								>
-									<div className="calendar-events-scrollarea">
+									<div
+										className="calendar-events-scrollarea"
+										onWheel={(e) => {
+											if (item.events.length >= eventListScrollLimit) {
+												e.stopPropagation();
+												e.target.scrollBy(0, Math.sign(e.deltaY) * 22.5);
+											} else handleWheel(e);
+										}}
+									>
 										{item.events.map((singleEvent, keyIndex) => {
 											let selectSERef;
 											let eventFocused = singleEvent.index === eventIndex;
@@ -252,7 +249,7 @@ export const Calendar = ({
 													index={singleEvent.index}
 													onWheel={(e) => {
 														if (
-															item.events.length >
+															item.events.length >=
 															eventListScrollLimit
 														) {
 															e.stopPropagation();
@@ -268,11 +265,10 @@ export const Calendar = ({
 														className="calendar-event-bullet"
 														onWheel={(e) => {
 															if (
-																item.events.length >
+																item.events.length >=
 																eventListScrollLimit
 															) {
 																e.stopPropagation();
-																// TODO: this does not work.
 																e.target.parentNode.parentNode.scrollBy(
 																	0,
 																	Math.sign(e.deltaY) * 22.5
@@ -298,7 +294,7 @@ export const Calendar = ({
 														}}
 														onWheel={(e) => {
 															if (
-																item.events.length >
+																item.events.length >=
 																eventListScrollLimit
 															) {
 																e.stopPropagation();
@@ -333,14 +329,11 @@ export const Calendar = ({
 	useEffect(() => {
 		if (selectedMonthRef.current) {
 			selectedMonthRef.current.scrollIntoView({
-				// behavior: "smooth",
-				// block: "center",
 				inline: "center",
 			});
 		}
 		if (selectedSingleEventRef.current)
 			selectedSingleEventRef.current.scrollIntoView({
-				// watch this for shit
 				behavior: "smooth",
 				block: "center",
 			});

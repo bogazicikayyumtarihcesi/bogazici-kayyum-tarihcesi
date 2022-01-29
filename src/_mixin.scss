@@ -2,7 +2,7 @@
 @import url("https://fonts.googleapis.com/css2?family=Fira+Sans+Condensed:wght@100;200;300;400;500;600;700&display=swap");
 @import url("https://fonts.googleapis.com/css2?family=Fira+Sans+Extra+Condensed:wght@100;200;300;400;500;600;700;800;900&display=swap");
 @import url("https://fonts.googleapis.com/css2?family=Rubik:wght@300;400;500;600;700;800;900&display=swap");
-@import url('https://fonts.googleapis.com/css2?family=Fira+Mono&display=swap');
+@import url("https://fonts.googleapis.com/css2?family=Fira+Mono&display=swap");
 
 $fira-sans: "Fira Sans", sans-serif;
 $fira-condensed: "Fira Sans Condensed", sans-serif;
@@ -13,28 +13,16 @@ $main-font: $fira-sans;
 $condensed: $fira-condensed;
 $extra-condensed: $fira-extra-condensed;
 $title-font: $rubik;
-$monospace: 'Fira Mono', monospace;
-
-// OLD THEME
-// $primary-color: hsl(218, 40%, 34%);
-// $secondary-color: hsl(218, 20%, 59%);
-// $tertiary-color: hsl(218, 10%, 36%);
-// $text-highlight: rgb(255, 101, 67);
+$monospace: "Fira Mono", monospace;
 
 $text-color: aliceblue;
 $text-secondary-color: grey;
-// $text-highlight: #C26921;
-$text-highlight: #C26921;
-
-// $primary-color: hsl(218, 26%, 34%);
+$text-highlight: #c26921;
 $primary-color: hsl(218, 18%, 48%);
-// $secondary-color: hsl(218, 20%, 49%);
 $secondary-color: hsl(218, 15%, 40%);
 $tertiary-color: hsl(218, 10%, 36%);
-// $basic-box-background: hsla(218, 16%, 25%, 0.98);
 $basic-box-background: hsla(218, 20%, 25%, 0.98);
 $dark-background: hsl(218, 10%, 20%);
-
 $contrast-color: hsl(0, 0%, 94%);
 $contrast-shade: hsl(0, 0%, 63%);
 $contrast-text-color: black;
@@ -48,6 +36,13 @@ $contrast-text-color: black;
 @mixin fill-container {
 	width: 100%;
 	height: 100%;
+}
+
+@mixin hide-scrollbar {
+	scrollbar-width: none;
+	&::-webkit-scrollbar {
+		display: none;
+	}
 }
 
 @mixin clear-button {
@@ -69,7 +64,6 @@ $contrast-text-color: black;
 	&:hover {
 		color: $text-highlight;
 	}
-
 }
 
 @mixin main-header-text($color: aliceblue) {
@@ -80,24 +74,58 @@ $contrast-text-color: black;
 	-webkit-text-stroke: 1px black;
 
 	@media (max-width: 1701px) {
-	font-size: 50px;		
+		font-size: 50px;
 	}
-	
+
 	@media (max-width: 1470px) {
-	font-size: 45px;		
+		font-size: 45px;
 	}
 
 	@media (max-width: 1325px) {
-	font-size: 40px;		
+		font-size: 40px;
 	}
 
 	@media (max-width: 1170px) {
-	font-size: 35px;		
+		font-size: 35px;
 	}
 
-	@media (max-width: 1050px) {
-	font-size: 30px;		
+	@media (min-width: 961px) and (max-width: 1050px) {
+		font-size: 30px;
 	}
+
+	&.left-frame-open {
+		@media (min-width: 961px) and (max-width: 1453px) {
+			font-size: 40px;
+		}
+		@media (min-width: 961px) and (max-width: 1380px) {
+			font-size: 36px;
+		}
+		@media (min-width: 961px) and (max-width: 1220px) {
+			width: 45%;
+			font-size: 32px;
+		}
+		@media (min-width: 961px) and (max-width: 1120px) {
+			font-size: 28px;
+		}
+
+		// @media (max-width: 1215px) {
+		// 	font-size: 33px;
+		// }
+		// @media (max-width: 1175px) {
+		// 	font-size: 30px;
+		// }
+		// @media (max-width: 1140px) {
+		// 	width: 50%;
+		// 	font-size: 30px;
+		// }
+	}
+}
+
+@mixin link-button-text($color: aliceblue) {
+	color: $color;
+	font-family: $title-font;
+	font-weight: 900;
+	font-size: 32px;
 }
 
 @mixin copy-message-text($color: aliceblue) {
@@ -158,6 +186,24 @@ $contrast-text-color: black;
 	color: $color;
 	font-family: $main-font;
 	text-align: justify;
+	font-size: 20px;
+	@media (max-height: 900px) {
+		font-size: 18px;
+	}
+	@media (max-height: 820px) {
+		font-size: 16px;
+	}
+
+	@media (max-height: 750px) {
+		font-size: 14px;
+	}
+
+	@media (max-height: 666px) {
+		font-size: 12px;
+	}
+	@media (max-height: 500px) {
+		font-size: 10px;
+	}
 }
 
 @mixin card-links-text($color: $primary-color) {
@@ -199,6 +245,14 @@ $contrast-text-color: black;
 	font-family: $condensed;
 	font-weight: 600;
 	font-size: 24px;
+
+	@media (max-height: 787px) {
+		font-size: 22px;
+	}
+
+	@media (max-height: 666px) {
+		font-size: 18px;
+	}
 }
 
 @mixin calendar-month-text($color: aliceblue) {
@@ -213,6 +267,36 @@ $contrast-text-color: black;
 	font-size: 14px;
 }
 
+@mixin readme-header-text($color: aliceblue) {
+	color: $color;
+	font-family: $title-font;
+	font-weight: 900;
+	font-size: 42px;
+	-webkit-text-stroke: 1px black;
+
+	@media (max-width: 965px) {
+		font-size: 40px;
+	}
+	@media (max-width: 745px) {
+		font-size: 36px;
+	}
+	@media (max-width: 690px) {
+		font-size: 32px;
+	}
+	@media (max-width: 610px) {
+		font-size: 28px;
+	}
+	@media (max-width: 530px) {
+		font-size: 24px;
+	}
+	@media (max-width: 460px) {
+		font-size: 20px;
+	}
+	@media (max-width: 400px) {
+		font-size: 18px;
+	}
+}
+
 @mixin readme-text($color: aliceblue) {
 	color: $color;
 	font-family: $main-font;
@@ -220,6 +304,14 @@ $contrast-text-color: black;
 	font-weight: 300;
 	text-align: justify;
 	line-height: 135%;
+
+	@media (max-width: 820px) {
+		font-size: 18px;
+	}
+
+	@media (max-width: 610px) {
+		font-size: 16px;
+	}
 }
 
 @mixin unselectable-text {
@@ -231,6 +323,5 @@ $contrast-text-color: black;
 
 @mixin basic-card($radius: 32px) {
 	background-color: $basic-box-background;
-	// background-color: $dark-background;
 	border-radius: $radius;
 }

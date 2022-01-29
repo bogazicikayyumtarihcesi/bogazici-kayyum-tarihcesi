@@ -4,11 +4,6 @@ import { About, Chronology, PGP } from "./pages";
 import "./App.scss";
 
 const App = () => {
-	// TODO: change responsive criteria with this.
-	// const isMobile = window.matchMedia(
-	// 	"(pointer: coarse) and (hover: none)"
-	// ).matches;
-
 	return (
 		<div id="app">
 			<Routes>

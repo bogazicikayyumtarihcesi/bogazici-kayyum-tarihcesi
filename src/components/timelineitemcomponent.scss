@@ -17,13 +17,13 @@
 
 	margin: 0px;
 	padding: 10px 30px 4px 30px;
-	
+
 	height: 100%;
 	width: 40vw;
-	
+
 	@media screen and (max-width: 960px) {
 		@include basic-card($radius: 16px);
-		width: 80vw;
+		width: 90vw;
 		max-width: 600px;
 		padding: 4px 8px;
 	}
@@ -31,7 +31,7 @@
 
 .event-card-content {
 	display: grid;
-	grid-template-rows: 10% 70% 20%;
+	grid-template-rows: 12% 68% 20%;
 
 	width: 100%;
 	height: calc(100% - 26px);
@@ -41,39 +41,52 @@
 .event-card-header {
 	@include fill-container;
 	grid-row: 1 / span 1;
-
 	position: relative;
-
+	// display: flex;
+	// flex-direction: column;
+	// justify-content: flex-end;
 }
 
 .event-card-date {
 	@include card-date-text($color: #eaf2f3);
-	align-self: flex-end;
-	height: 30%;
-
+	height: 18px;
+	width: 100%;
+	width: fit-content;
 	position: absolute;
 	top: 0;
-	width: 100%;
+	right: 0;
 
-	@media screen and (max-width: 1440px) {
-		font-size: 12px;
+	@media (max-width: 1440px) {
+		font-size: 16px;
 	}
-	@media screen and (max-width: 1080px) {
-		font-size: 8px;
+	@media (max-width: 960px) {
+		font-size: 14px;
+	}
+
+	&:hover {
+		color: $text-highlight;
 	}
 }
 
 .event-card-title {
 	@include card-title-text($color: $text-color);
 	position: absolute;
-	bottom: 0;
-    padding-bottom: 3px;
+	bottom: 0px;
+	cursor: pointer;
+	// height: calc(100% - 25px);
+	vertical-align: baseline;
+	// padding-bottom: 3px;
+
+	&:hover {
+		color: $contrast-color;
+	}
 }
 
 .event-image-container {
 	@include fill-container;
 	@include flex-center;
 	align-self: center;
+	cursor: pointer;
 
 	grid-row: 2 / span 1;
 }
@@ -93,12 +106,11 @@
 	padding-top: 8px;
 	font-size: 16px;
 	grid-row: 3 / span 1;
-	
+
 	overflow-y: auto;
-	
-	@media screen and (max-width: 960px) {
-		padding: 8px 8px 0px 8px;
-		font-size: 12px;
+
+	p {
+		@include card-body-text;
 	}
 }
 

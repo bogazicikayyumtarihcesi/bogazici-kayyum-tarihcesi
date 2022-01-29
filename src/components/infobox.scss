@@ -5,32 +5,39 @@
 	@include flex-center;
 	margin: 20px;
 	flex-direction: column;
-	width: 80%;
+	width: 100%;
 	max-width: 800px;
 	min-width: 300px;
+
+	overflow-y: auto;
 }
 
 .readme-header {
-	@include main-header-text;
+	@include readme-header-text;
 	margin-top: 50px;
-	font-size: 42px;
 }
 
 .readme-text {
-    margin: 30px 40px;
+	width: 100%;
+	padding: 30px 40px;
 	text-indent: 5%;
 	p {
-        @include readme-text;
+		@include readme-text;
 		padding-bottom: 15px;
+	}
+	@media (max-width: 530px) {
+		padding: 30px 30px;
+	}
+	@media (max-width: 400px) {
+		padding: 30px 20px;
 	}
 }
 
 .readme-text-link {
 	@include link($color: $contrast-color);
-	text-decoration-thickness: .5px;
-
+	text-decoration-thickness: 0.5px;
 }
 
 .readme-contact-link {
-	@include link($contrast-color)
+	@include link($contrast-color);
 }

@@ -5,13 +5,16 @@ import { handleScrollEventChange } from "../util/eventUtils";
 import "./eventcarousel.scss";
 import { useWindowResize } from "../hooks/useWindowResize";
 
-const EventCarousel = ({
+const MobileCarousel = ({
 	timeline,
 	eventIndex,
+	mobileIndexOverride,
 	leftFrameOpen,
 	setEventIndex,
+	setMobileIndexOverride,
 	setBackdropOpen,
 	setInfoCardContent,
+	setLeftFrameOpen,
 	getDisplayDate,
 }) => {
 	const [windowWidth, windowHeight] = useWindowResize();
@@ -19,7 +22,7 @@ const EventCarousel = ({
 	// Updates state to force re-render, truth value is irrelevant.
 	const [forceRender, setForceRender] = useState(false);
 
-	const hPercentageGap = 10;
+	const vPercentageGap = 0.1;
 	const slideWidth = window.innerWidth * 0.4;
 
 	const carouselRef = useRef();
@@ -36,37 +39,55 @@ const EventCarousel = ({
 
 	useEffect(() => {
 		if (!slideRef.current) return;
+		
 		const carousel = carouselRef.current;
+		
+		const slideHeight = slideRef.current.getBoundingClientRect().height;
+		
+		const { top: carouselTop, height: carouselHeight } = offsetRef.current;
+		
+		const vPixelGap = vPercentageGap * (carouselHeight / 100);
+		const vPixelOffset = vPixelGap * eventIndex;
+		
+		const topOffset = vPixelOffset + vPixelGap / 2 - carouselTop + slideHeight * eventIndex;
+		
+		if (mobileIndexOverride) {
+			slideRef.current.scrollIntoView({ block: "center" });
+			setMobileIndexOverride(false);
+		}
+	}, [mobileIndexOverride, eventIndex, leftFrameOpen, offsetRef.current.width]);
 
-		const { left: carouselLeft, width: carouselWidth } = offsetRef.current;
-
-		const hPixelGap = hPercentageGap * (carouselWidth / 100);
-		const hPixelOffset = hPixelGap * eventIndex;
-
-		const leftOffset =
-			hPixelOffset -
-			hPixelGap / 2 +
-			slideWidth * eventIndex +
-			carouselWidth / 4 +
-			carouselLeft +
-			carouselLeft / 5;
-
-		carousel.scrollTo({ left: leftOffset, behavior: "smooth" });
-	}, [eventIndex, leftFrameOpen, offsetRef.current.width]);
 
 	const setItemStyles = (index) => {
-		const { left, width, height } = offsetRef.current;
+		const { top, height } = offsetRef.current;
 		const mobileSlideHeight = height * 0.6;
 		return {
-			left: `calc(${hPercentageGap * index}% + ${left + width / 2 + slideWidth * index}px)`,
+			top: `calc(${vPercentageGap * index}% + ${
+				top + mobileSlideHeight / 4 + mobileSlideHeight * index
+			}px)`,
+			left: "50%",
+			transform: "translateX(-50%)",
 		};
+	};
+
+	const convertScrollPositionToIndex = () => {
+		let scrollAreaHeight = carouselRef.current.offsetHeight;
+		let totalDistance = carouselRef.current.scrollHeight;
+		let scrollPosition = carouselRef.current.scrollTop;
+		let itemCount = timeline.length + 2;
+		let itemHeight = totalDistance / itemCount;
+		let selectedEventIndex = Math.round(Math.max(0, scrollPosition - scrollAreaHeight / 3) / itemHeight);
+		if (eventIndex !== selectedEventIndex) {
+			const nextEventIndex = Math.min(selectedEventIndex, timeline.length - 1);
+			setEventIndex(nextEventIndex);
+		}
 	};
 
 	return (
 		<div
 			className="event-carousel-container"
 			ref={carouselRef}
-			onWheel={(e) => handleScrollEventChange(e, setEventIndex)}
+			onScroll={convertScrollPositionToIndex}
 		>
 			{timeline.map((item, index) => {
 				let slideFocused = "";
@@ -98,6 +119,14 @@ const EventCarousel = ({
 								}}
 							></div>
 						) : null}
+						{leftFrameOpen ? (
+							<div
+								className="backdrop-mobile"
+								onClick={() => {
+									setLeftFrameOpen(false);
+								}}
+							></div>
+						) : null}
 					</React.Fragment>
 				);
 			})}
@@ -105,4 +134,4 @@ const EventCarousel = ({
 	);
 };
 
-export default EventCarousel;
+export default MobileCarousel;

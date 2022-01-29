@@ -52,9 +52,11 @@ export const KayyumMeter = ({ rawDate }) => {
 					</div>
 				) : null}
 			</div>
-			{kelle ? <div className="kelle-container">
-				<img src={kelle} className="kelle" />
-			</div> : null}
+			{kelle ? (
+				<div className="kelle-container">
+					<img src={kelle} className="kelle" />
+				</div>
+			) : null}
 		</div>
 	);
 };

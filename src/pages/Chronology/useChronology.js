@@ -1,4 +1,4 @@
-import { useState, useEffect } from "react";
+import { useState, useEffect, useRef } from "react";
 import { useParams, useNavigate } from "react-router-dom";
 import { useWindowResize } from "../../hooks/useWindowResize";
 
@@ -19,6 +19,7 @@ export const useChronology = () => {
 
 	const [backdropOpen, setBackdropOpen] = useState(!!params.eventOpen);
 	const [eventIndex, setEventIndex] = useState(initIndex === -1 ? 0 : initIndex);
+	const [mobileIndexOverride, setMobileIndexOverride] = useState(false);
 
 	const [leftFrameOpen, setLeftFrameOpen] = useState(false);
 	const [infoCardContent, setInfoCardContent] = useState({
@@ -43,14 +44,21 @@ export const useChronology = () => {
 
 	useEffect(() => {
 		document.fonts.ready.then(() => {
-			fitty(".event-card-title", { maxSize: 24, minSize: 0 })
+			fitty(".event-card-title", { maxSize: 24, minSize: 14 });
 		});
 	}, [windowWidth]);
+
+	const initialRenderRef = useRef(true);
 
 	useEffect(() => {
 		let eventID = timeline[eventIndex].identifier;
 		if (backdropOpen) navigate(`/${eventID}/detay`);
 		else navigate(`/${eventID}`);
+		if (initialRenderRef.current === true) {
+			setMobileIndexOverride(true);
+			initialRenderRef.current = false;
+		}
+
 		// eslint-disable-next-line react-hooks/exhaustive-deps
 	}, [eventIndex, backdropOpen]);
 
@@ -83,6 +91,13 @@ export const useChronology = () => {
 		displayDate,
 	};
 
+	const mobileCarouselProps = {
+		...carouselProps,
+		mobileIndexOverride,
+		setMobileIndexOverride,
+		setLeftFrameOpen,
+	};
+
 	const leftFrameProps = {
 		timeline,
 		eventIndex,
@@ -90,11 +105,16 @@ export const useChronology = () => {
 		setEventIndex,
 		setLeftFrameOpen,
 		setInfoCardContent,
+		mobileIndexOverride,
+		setMobileIndexOverride,
+		windowWidth,
 	};
 
 	const leftFrameButtonProps = {
 		windowWidth,
 		leftFrameOpen,
+		backdropOpen,
+		setBackdropOpen,
 		setLeftFrameOpen,
 	};
 
@@ -199,6 +219,7 @@ export const useChronology = () => {
 
 	const props = {
 		carouselProps,
+		mobileCarouselProps,
 		leftFrameProps,
 		leftFrameButtonProps,
 		paginationProps,

@@ -1,11 +1,16 @@
 import { useRef, useEffect } from "react";
 import "./leftframe.scss";
 
-export const LeftFrame = ({ timeline, eventIndex, setEventIndex, leftFrameOpen, windowWidth }) => {
+export const LeftFrame = ({
+	timeline,
+	eventIndex,
+	setEventIndex,
+	mobileIndexOverride,
+	setMobileIndexOverride,
+	leftFrameOpen,
+	windowWidth,
+}) => {
 	const parseYear = (dateStr) => Number(dateStr.slice(0, 4));
-
-	const deltaYRef = useRef();
-
 	const scrollRef = useRef();
 	const selectedRef = useRef();
 
@@ -15,20 +20,9 @@ export const LeftFrame = ({ timeline, eventIndex, setEventIndex, leftFrameOpen, 
 		return { year, title: item.title };
 	});
 
-	const handleTouchStart = (event) => {
-		const initialY = event.touches[0].clientY;
-		deltaYRef.current = initialY;
-	};
-
-	const handleTouchMove = (event) => {
-		const currentY = event.changedTouches[0].clientY;
-		const deltaY = deltaYRef.current - currentY;
-		scrollRef.current.scrollBy(0, deltaY / 10);
-	};
-
-	const handleTouchEnd = (event) => {
-		const endY = event.changedTouches[0].clientY;
-		deltaYRef.current = endY;
+	const handleClick = (event, index) => {
+		setEventIndex(index);
+		if (windowWidth <= 960) setMobileIndexOverride(true);
 	};
 
 	const renderList = () => {
@@ -39,7 +33,6 @@ export const LeftFrame = ({ timeline, eventIndex, setEventIndex, leftFrameOpen, 
 				) : null;
 
 			let isSelected = Number(index) === Number(eventIndex);
-
 			let ref = isSelected ? selectedRef : null;
 
 			return (
@@ -47,8 +40,7 @@ export const LeftFrame = ({ timeline, eventIndex, setEventIndex, leftFrameOpen, 
 					{yearSeparator}
 					<div
 						className={`left-frame-list-item ${isSelected ? "list-item-selected" : ""}`}
-						onClick={() => setEventIndex(index)}
-						onWheel={(e) => scrollRef.current.scrollBy(0, e.deltaY)}
+						onClick={(event) => handleClick(event, index)}
 						ref={ref}
 					>
 						{item.title}
@@ -70,16 +62,9 @@ export const LeftFrame = ({ timeline, eventIndex, setEventIndex, leftFrameOpen, 
 	};
 
 	return (
-		<div className="left-frame" style={setLeftFrameStyles()}>
+		<div className={`left-frame${leftFrameOpen ? " left-frame-open" : ""}`} style={setLeftFrameStyles()}>
 			<div className="left-frame-header-field"></div>
-			<div
-				className="left-frame-content-field"
-				onWheel={(e) => e.target.scrollBy(0, e.deltaY)}
-				onTouchStart={(event) => handleTouchStart(event)}
-				onTouchMove={(event) => handleTouchMove(event)}
-				onTouchEnd={(event) => handleTouchEnd(event)}
-				ref={scrollRef}
-			>
+			<div className="left-frame-content-field" ref={scrollRef}>
 				{renderList()}
 			</div>
 		</div>

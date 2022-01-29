@@ -1,7 +1,8 @@
-import React, { useEffect } from "react";
+import React from "react";
 import { Link } from "react-router-dom";
 
 import EventCarousel from "../../components/eventcarousel";
+import MobileCarousel from "../../components/mobilecarousel";
 import { Calendar } from "../../components/calendar.js";
 import { LeftFrame } from "../../components/leftframe";
 
@@ -25,12 +26,20 @@ export const Chronology = () => {
 		getDisplayDate,
 	} = methods;
 
-	const { carouselProps, leftFrameProps, leftFrameButtonProps, paginationProps } = props;
+	const {
+		carouselProps,
+		mobileCarouselProps,
+		leftFrameProps,
+		leftFrameButtonProps,
+		paginationProps,
+	} = props;
+
+	const leftFrameStyle = leftFrameProps.leftFrameOpen ? "left-frame-open" : ""
 
 	return (
 		<div id="chronology">
 			<LeftFrameToggleButton {...leftFrameButtonProps} />
-			<KayyumMeter rawDate={rawDate}/>
+			<KayyumMeter rawDate={rawDate} />
 			<div className="main-frame" style={setMainFrameStyles()}>
 				<LeftFrame {...leftFrameProps} />
 
@@ -50,9 +59,14 @@ export const Chronology = () => {
 					) : null}
 
 					<div className="main-header-container">
-						<div className="main-header">Boğaziçi Kayyum Tarihçesi</div>
+						<div className={`main-header  ${leftFrameStyle}`}>Boğaziçi Kayyum Tarihçesi</div>
 					</div>
-					<EventCarousel {...carouselProps} getDisplayDate={getDisplayDate} />
+
+					{windowWidth > 960 ? (
+						<EventCarousel {...carouselProps} getDisplayDate={getDisplayDate} />
+					) : (
+						<MobileCarousel {...mobileCarouselProps} getDisplayDate={getDisplayDate} />
+					)}
 					<Calendar {...paginationProps} />
 				</div>
 			</div>

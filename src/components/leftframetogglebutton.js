@@ -1,10 +1,6 @@
-import "./leftframe.scss";
+import "./leftframetogglebutton.scss";
 
-export const LeftFrameToggleButton = ({
-	leftFrameOpen,
-	setLeftFrameOpen,
-	windowWidth,
-}) => {
+export const LeftFrameToggleButton = ({ leftFrameOpen, setLeftFrameOpen, windowWidth }) => {
 	const setToggleButtonStyles = () => {
 		const defaultStyles = {
 			width: "40px",

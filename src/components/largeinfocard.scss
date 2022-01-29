@@ -11,9 +11,10 @@
 
 	&.show {
 		display: unset;
-		width: 40vw;
-		min-width: 400px;
-		height: 80vh;
+		width: 90vw;
+		min-width: 300px;
+		max-width: 720px;
+		height: 85vh;
 		z-index: 1050;
 	}
 }
@@ -21,40 +22,33 @@
 .large-card-body {
 	@include fill-container;
 	@include basic-card($radius: 16px);
+	@include hide-scrollbar;
 	background: $contrast-color;
 	display: grid;
 	grid-template-rows: 1fr 6fr 6fr auto;
 	grid-template-columns: 100%;
 
-	overflow-y: auto;
-	scrollbar-width: none;
+	overflow-y: scroll;
 	padding: 15px;
-	&::-webkit-scrollbar {
-		display: none;
-	}
 }
 
-.large-card-header { 
-	// TODO: understand this
-	// this doesn't address why it must be so
-    @include fill-container;
+.large-card-header {
+	@include fill-container;
 	grid-row: 1 / span 1;
-    display: flex;
-    flex-direction: column;
-    padding: 4px 16px;
+	display: flex;
+	flex-direction: column;
+	padding: 4px 16px;
 }
 
 .large-card-date {
-    @include card-date-text($color: black);
-    font-weight: 300;
+	@include card-date-text($color: black);
+	font-weight: 300;
 }
 
 .large-card-title {
 	@include card-title-text($color: $contrast-text-color);
 	font-size: 150%;
 }
-
-/* Image gallery styles */
 
 .info-gallery {
 	@include fill-container;
@@ -73,10 +67,11 @@
 
 .large-card-text-container {
 	grid-row: 3 / span 1;
-    margin: 16px 24px;
+	margin: 16px 24px;
 	* {
 		@include card-body-text($color: $contrast-text-color);
-        padding: 8px 0px;
+		text-indent: 5%;
+		padding: 8px 0px;
 	}
 }
 
@@ -103,10 +98,7 @@
 .full-size-image-container {
 	@include fill-container;
 	@include flex-center;
-
-	// Enabling this ironically causes the images to stick to top.
 	align-items: unset;
-	
 	position: absolute;
 	z-index: 1100;
 	background: rgba(0, 0, 0, 0.818);
@@ -115,9 +107,7 @@
 .gallery-image-container {
 	@include fill-container;
 	@include flex-center;
-
 	object-fit: cover;
-	
 	overflow: hidden;
 	cursor: pointer;
 }

@@ -5,6 +5,11 @@
 	position: relative;
 	grid-row: 2 / span 1;
 	overflow: hidden;
+
+	@media (max-width: 960px) {
+		@include hide-scrollbar;
+		overflow: hidden scroll;
+	}
 }
 
 .carousel-slide {
@@ -21,4 +26,14 @@
 
 .slide-focused {
 	opacity: 1;
+}
+
+.backdrop-mobile {
+	@include fill-container;
+
+	z-index: 1000;
+	opacity: 0;
+	position: fixed;
+	top: 0;
+	left: 0;
 }

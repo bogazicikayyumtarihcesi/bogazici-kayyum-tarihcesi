@@ -1,15 +1,19 @@
 import { useState } from "react";
 import imagesDictionary from "../assets/imagesDictionary.json";
-import {
-	handleTouchEventChange,
-	handleScrollEventChange,
-} from "../util/eventUtils";
+import { handleTouchEventChange, handleScrollEventChange } from "../util/eventUtils";
 import { ShareCopy } from "./sharecopy.js";
 import { placeholder } from "../assets";
 
 import "./timelineitemcomponent.scss";
 
-const TimelineItemComponent = ({ item, index, setBackdropOpen, setEventIndex, getDisplayDate }) => {
+const TimelineItemComponent = ({
+	item,
+	index,
+	setBackdropOpen,
+	setEventIndex,
+	getDisplayDate,
+	windowWidth,
+}) => {
 	const [touchDistance, setTouchDistance] = useState({
 		start: 0,
 		end: 0,
@@ -17,37 +21,20 @@ const TimelineItemComponent = ({ item, index, setBackdropOpen, setEventIndex, ge
 	});
 
 	const { date, title, summary, identifier } = item;
-    const displayDate = getDisplayDate(date);
+	const displayDate = getDisplayDate(date);
 
-
-	const cardImage = imagesDictionary[identifier]
-		? imagesDictionary[identifier][0].url
-		: "";
+	const cardImage = imagesDictionary[identifier] ? imagesDictionary[identifier][0].url : "";
 
 	const handleItemOpen = () => {
 		setBackdropOpen(true);
 	};
 
-	const handleTouchStart = (event) => {
-		const initialY = event.changedTouches[0].clientY;
-		setTouchDistance({ ...touchDistance, start: initialY });
-	};
-
-	const handleTouchEnd = (event) => {
-		const finalY = event.changedTouches[0].clientY;
-		const deltaY = finalY - touchDistance.start;
-		setTouchDistance({ ...touchDistance, end: finalY, deltaY });
-		handleTouchEventChange(deltaY, setEventIndex);
+	const handleWheel = (event) => {
+		if (windowWidth > 960) handleScrollEventChange(event, setEventIndex, true);
 	};
 
 	return (
-		<div
-			className="event-card-container"
-			onWheel={(e) => handleScrollEventChange(e, setEventIndex, true)}
-			
-			onTouchStart={(e) => handleTouchStart(e)}
-			onTouchEnd={(e) => handleTouchEnd(e)}
-		>
+		<div className="event-card-container" onWheel={handleWheel}>
 			<div
 				className="event-card"
 				key={index}
@@ -57,15 +44,18 @@ const TimelineItemComponent = ({ item, index, setBackdropOpen, setEventIndex, ge
 				<div className="event-card-content">
 					<div className="event-card-header">
 						<ShareCopy className={"event-card-date"} content={displayDate} />
-						<div className="event-card-title">{title}</div>
+						<div className="event-card-title" onClick={handleItemOpen}>
+							{title}
+						</div>
 					</div>
-					<div className="event-image-container">
+					<div className="event-image-container" onClick={handleItemOpen}>
 						{cardImage ? (
 							<img
 								loading="lazy"
 								src={cardImage}
 								alt={`${title} - ${cardImage}`}
 								className="event-card-image"
+								draggable={false}
 							/>
 						) : (
 							<img
@@ -73,6 +63,7 @@ const TimelineItemComponent = ({ item, index, setBackdropOpen, setEventIndex, ge
 								src={placeholder}
 								alt="placeholder"
 								className="event-card-image placeholder"
+								draggable={false}
 							/>
 						)}
 					</div>
