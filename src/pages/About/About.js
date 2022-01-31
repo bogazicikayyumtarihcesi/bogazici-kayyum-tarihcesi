@@ -6,9 +6,9 @@ import "./About.scss";
 export const About = () => {
 	return (
 		<div id="about">
-			<div className="home-button">
-				<Link to="/">🡄</Link>
-			</div>
+			<Link to="/">
+				<div className="home-button"><span>🡄</span></div>
+			</Link>
 			<InfoBox />
 		</div>
 	);

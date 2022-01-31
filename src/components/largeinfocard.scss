@@ -4,17 +4,17 @@
 	display: none;
 	position: absolute;
 	left: 50%;
-	top: 60px;
+	top: 75px;
 	transform: translate(-50%, 0);
 	padding: 4px;
 	overflow: hidden auto;
 
 	&.show {
 		display: unset;
-		width: 90vw;
+		width: 85vw;
 		min-width: 300px;
 		max-width: 720px;
-		height: 85vh;
+		height: 80vh;
 		z-index: 1050;
 	}
 }
@@ -34,10 +34,26 @@
 
 .large-card-header {
 	@include fill-container;
+	position: relative;
 	grid-row: 1 / span 1;
 	display: flex;
 	flex-direction: column;
 	padding: 4px 16px;
+}
+
+.close-button {
+	@include close-button-text;
+	cursor: pointer;
+	text-align: end;
+	position: absolute;
+	top: -12px;
+	right: -4px;
+	opacity: .7;
+	&:hover, &:active  {
+		color: $text-highlight;
+		opacity: 1;
+	}
+
 }
 
 .large-card-date {
@@ -80,10 +96,13 @@
 	display: flex;
 	flex-direction: column;
 	align-items: baseline;
+	word-break: break-all;
+
 }
 
 .links-box {
 	min-height: 50px;
+	height: fit-content;
 	width: 100%;
 	margin: 0 auto;
 	padding: 8px 0;

@@ -1,10 +1,24 @@
+import React, { useEffect } from "react";
 import { Link } from "react-router-dom";
+import { useWindowResize } from "../hooks/useWindowResize";
+import fitty from "fitty";
+
 import "./infobox.scss";
 
 export const InfoBox = () => {
+	const [windowWidth, windowHeight] = useWindowResize();
+
+	useEffect(() => {
+		document.fonts.ready.then(() => {
+			fitty(".readme-header", { maxSize: 46, minSize: 18 });
+		});
+	}, [windowWidth]);
+
 	return (
 		<div className="info-box">
-			<div className="readme-header">BOĞAZİÇİ KAYYUM TARİHÇESİ</div>
+			<div className="readme-header-container">
+				<div className="readme-header">BOĞAZİÇİ KAYYUM TARİHÇESİ</div>
+			</div>
 			<div className="readme-text">
 				<p>
 					Boğaziçi Üniversitesi'nin son seçilmiş rektörü Gülay Barbarosoğlu'nun yerine ilk
@@ -35,9 +49,9 @@ export const InfoBox = () => {
 
 				<p>
 					Özerklik ve demokrasi mücadelesi sırasında toplumsal hafızanın kesintiye
-					uğratılması, veya daha da kötüsü çeşitli resmi tarih anlatılarıyla ikame
-					edilmesi tehdidine karşı, bu süreci yaşamış bir grup insan olarak bu kronolojiyi
-					derleme ihtiyacı hissettik.
+					uğratılması, veya daha da kötüsü{" "}
+					<em>çeşitli resmi tarih anlatılarıyla ikame edilmesi</em> tehdidine karşı, bu
+					süreci yaşamış bir grup insan olarak bu kronolojiyi derleme ihtiyacı hissettik.
 				</p>
 				<p>
 					Bu kronoloji, ilk kayyum Mehmed Özkan'ın atanmasına giden sürecin en başından
@@ -45,22 +59,27 @@ export const InfoBox = () => {
 					bütün aktörlerin bu süreçteki icraatlerini belgelemek olmakla birlikte, Boğaziçi
 					Üniversitesi'ni doğrudan ilgilendiren siyasi olaylar da kronolojide yer alıyor.
 					Boğaziçi ile doğrudan ilgisi olmayan, ülke veya dünya gündemine ilişkin genel
-					olaylar kronolojide yer almıyor. Sitede daha hızlı gezinmek için mouse
-					tekerleğini ve sağ-sol yön tuşlarını kullanabilirsiniz.
+					olaylar kronolojide yer almıyor.
 				</p>
-
+				<p>
+					Sitede daha hızlı gezinmek için mouse tekerleğini ve sağ-sol yön tuşlarını
+					kullanabilirsiniz. Başlıklara, görsellere veya "Detaylar" tuşuna basarak olayın
+					detay ve kaynaklarını görebilir, sağ üstteki tarihe tıklayarak olayın linkini
+					hızlıca kopyalayabilir ve başkalarıyla paylaşabilirsiniz.
+				</p>
 				<p>
 					Hiçbir maddi destek almadan, tamamen gönüllü ve amatör emek ile hazırlandığı
-					için eksikler ve hatalar olabilir. Ekleme, düzeltme önerilerinizi, internette
-					bulunmayan orijinal medyalarınızı (fotoğraf, video, ekran görüntüsü) ve
-					tanıklıklarınızı aşağıdaki kanallardan iletirseniz müteşekkir oluruz.
+					için eksikler ve hatalar olacaktır. Ekleme, düzeltme önerilerinizi (web sitesi
+					hakkında teknik öneriler dahil), internette bulunmayan orijinal medyalarınızı
+					(fotoğraf, video, ekran görüntüsü) ve tanıklıklarınızı aşağıdaki kanallardan
+					iletirseniz müteşekkir oluruz.
 				</p>
 				<span>E-mail: info@bogazicikayyumtarihcesi.com</span>
 				<br />
 				<span>
 					Twitter:{" "}
-					<a className="readme-contact-link" href="">
-						@bogazicikayyumtarihcesi
+					<a className="readme-contact-link" href="https://twitter.com/kayyumtarihcesi">
+						@kayyumtarihcesi
 					</a>
 				</span>
 				<br />

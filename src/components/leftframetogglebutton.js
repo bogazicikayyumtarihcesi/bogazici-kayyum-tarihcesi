@@ -5,10 +5,10 @@ export const LeftFrameToggleButton = ({ leftFrameOpen, setLeftFrameOpen, windowW
 		const defaultStyles = {
 			width: "40px",
 			height: "40px",
-			position: "absolute",
+			position: "fixed",
 			top: `${leftFrameOpen ? 7 : 7}px`,
 			left: `${leftFrameOpen ? 255 : 10}px`,
-			zIndex: "5001",
+			zIndex: "6000",
 		};
 		if (windowWidth <= 960) defaultStyles.left = "16px";
 		return defaultStyles;

@@ -5,9 +5,9 @@ $top-offset: 12px;
 @mixin widescreen-top-offset($defaultOffset: 0, $scale: 1) {
 	top: calc(#{$defaultOffset} + #{$scale} * #{$top-offset});
 
-	@media (min-aspect-ratio: 3 / 1) {
-		top: calc(#{$defaultOffset} + 2 * #{$scale} * #{$top-offset});
-	}
+	// @media (min-aspect-ratio: 3 / 1) {
+	// 	top: calc(#{$defaultOffset} + 2 * #{$scale} * #{$top-offset});
+	// }
 }
 
 .calendar-outer-container {
@@ -108,9 +108,9 @@ $top-offset: 12px;
 	max-height: 180px;
 	width: max-content;
 
-	@media (min-aspect-ratio: 276 / 100) {
-		display: none !important;
-	}
+	// @media (min-aspect-ratio: 276 / 100) {
+	// 	display: none !important;
+	// }
 }
 
 .calendar-events-scrollarea {

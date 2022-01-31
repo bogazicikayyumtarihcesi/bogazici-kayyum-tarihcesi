@@ -17,10 +17,5 @@
 
 body {
 	@include flex-center;
-	background: linear-gradient(
-		145deg,
-		$primary-color 14%,
-		$secondary-color 63%,
-		$tertiary-color 100%
-	);
+	background: $background-gradient;
 }

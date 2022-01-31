@@ -48,6 +48,19 @@ export const useChronology = () => {
 		});
 	}, [windowWidth]);
 
+	// useEffect(() => {
+	// 	console.log("FITTY");
+	// 	document.fonts.ready.then(() => {
+	// 		fitty(".readme-header", { maxSize: 42, minSize: 30 });
+	// 	});
+	// }, [windowWidth]);
+
+	useEffect(() => {
+		document.fonts.ready.then(() => {
+			fitty(".main-header", { maxSize: 52, minSize: 20 });
+		});
+	}, [windowWidth, leftFrameOpen]);
+
 	const initialRenderRef = useRef(true);
 
 	useEffect(() => {
@@ -165,7 +178,11 @@ export const useChronology = () => {
 
 		return ["previous", "next"].map((item) => {
 			let orientation = "";
-			let offset = slideWidth / 2 + 48;
+
+			const leftFrameOffset = leftFrameOpen ? 150 : 0;
+			let offset = backdropOpen
+				? Math.min(400, windowWidth * (45 / 100))
+				: slideWidth / 2 + Math.min(48, windowWidth / 50);
 			if (item === "previous") {
 				if (eventIndex === 0) return null;
 				orientation = `scaleX(-1)`;
@@ -181,12 +198,13 @@ export const useChronology = () => {
 					height={height}
 					width={width}
 					style={{
-						position: "absolute",
+						position: "fixed",
 						top: "28%",
 						left: 0,
 						right: 0,
 						margin: "auto",
-						transform: `translateX(${offset}px)` + orientation,
+						transform: `translateX(${offset + leftFrameOffset}px)` + orientation,
+						zIndex: backdropOpen ? 1100 : 100,
 					}}
 					onClick={() => handleArrowClick(item)}
 				>

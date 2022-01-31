@@ -26,6 +26,12 @@ $dark-background: hsl(218, 10%, 20%);
 $contrast-color: hsl(0, 0%, 94%);
 $contrast-shade: hsl(0, 0%, 63%);
 $contrast-text-color: black;
+$background-gradient: linear-gradient(
+	145deg,
+	$primary-color 14%,
+	$secondary-color 63%,
+	$tertiary-color 100%
+);
 
 @mixin flex-center {
 	display: flex;
@@ -60,65 +66,25 @@ $contrast-text-color: black;
 @mixin link($color: aliceblue) {
 	color: $color;
 	cursor: pointer;
+	word-break: break-all;
 
-	&:hover {
+	&:hover, &:active {
 		color: $text-highlight;
 	}
+}
+
+@mixin close-button-text($color:$contrast-shade, $size: 20px) {
+	color: $color;
+	font-family: $title-font;
+	font-weight: 900;
+	font-size: $size;
 }
 
 @mixin main-header-text($color: aliceblue) {
 	color: $color;
 	font-family: $title-font;
 	font-weight: 900;
-	font-size: 56px;
 	-webkit-text-stroke: 1px black;
-
-	@media (max-width: 1701px) {
-		font-size: 50px;
-	}
-
-	@media (max-width: 1470px) {
-		font-size: 45px;
-	}
-
-	@media (max-width: 1325px) {
-		font-size: 40px;
-	}
-
-	@media (max-width: 1170px) {
-		font-size: 35px;
-	}
-
-	@media (min-width: 961px) and (max-width: 1050px) {
-		font-size: 30px;
-	}
-
-	&.left-frame-open {
-		@media (min-width: 961px) and (max-width: 1453px) {
-			font-size: 40px;
-		}
-		@media (min-width: 961px) and (max-width: 1380px) {
-			font-size: 36px;
-		}
-		@media (min-width: 961px) and (max-width: 1220px) {
-			width: 45%;
-			font-size: 32px;
-		}
-		@media (min-width: 961px) and (max-width: 1120px) {
-			font-size: 28px;
-		}
-
-		// @media (max-width: 1215px) {
-		// 	font-size: 33px;
-		// }
-		// @media (max-width: 1175px) {
-		// 	font-size: 30px;
-		// }
-		// @media (max-width: 1140px) {
-		// 	width: 50%;
-		// 	font-size: 30px;
-		// }
-	}
 }
 
 @mixin link-button-text($color: aliceblue) {
@@ -271,30 +237,7 @@ $contrast-text-color: black;
 	color: $color;
 	font-family: $title-font;
 	font-weight: 900;
-	font-size: 42px;
 	-webkit-text-stroke: 1px black;
-
-	@media (max-width: 965px) {
-		font-size: 40px;
-	}
-	@media (max-width: 745px) {
-		font-size: 36px;
-	}
-	@media (max-width: 690px) {
-		font-size: 32px;
-	}
-	@media (max-width: 610px) {
-		font-size: 28px;
-	}
-	@media (max-width: 530px) {
-		font-size: 24px;
-	}
-	@media (max-width: 460px) {
-		font-size: 20px;
-	}
-	@media (max-width: 400px) {
-		font-size: 18px;
-	}
 }
 
 @mixin readme-text($color: aliceblue) {
@@ -324,4 +267,9 @@ $contrast-text-color: black;
 @mixin basic-card($radius: 32px) {
 	background-color: $basic-box-background;
 	border-radius: $radius;
+}
+
+@mixin fitty {
+	white-space: nowrap;
+	display: inline-block;
 }

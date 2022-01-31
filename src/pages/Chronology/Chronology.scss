@@ -34,47 +34,65 @@
 }
 
 .main-header-container {
-	padding-top: 12px;
+	padding-top: 6px;
+	padding-bottom: 6px;
 	grid-row: 1 / span 1;
 	width: 100%;
 	height: fit-content;
+	min-height: 48px;
 
 	display: flex;
 	align-items: center;
 	justify-content: center;
+
+	position: fixed;
+	top: 0;
+	left: 0;
+	@media (max-width: 960px) {
+		z-index: 1000;
+		// background-color: $tertiary-color;
+		background: $background-gradient;
+	}
+}
+
+.main-header-inner-container {
+	width: 60%;
+	margin: 0 auto;
+	text-align: center;
+
+	@media (max-width: 1240px) and (min-width: 1100px) {
+		width: 50%;
+	}
+	@media (max-width: 1100px) and (min-width: 960px) {
+		width: 45%;
+	}
 }
 
 .main-header {
 	@include main-header-text($color: $text-color);
 	@include unselectable-text;
-	width: 73%;
 	height: fit-content;
 	text-align: center;
+	vertical-align: middle;
 }
 
 .about-button {
 	@include flex-center;
 	opacity: 0.8;
-	position: absolute;
+	position: fixed;
 	right: 10px;
 	top: 7px;
 	background-color: $contrast-color;
 	border-radius: 50%;
 	width: 36px;
 	height: 36px;
-
+	z-index: 6000;
 	cursor: pointer;
-
-	* {
-		text-decoration: none;
-		@include link-button-text($color: $tertiary-color);
-	}
+	@include link-button-text($color: $tertiary-color);
 
 	&:hover {
 		opacity: 1;
-		* {
-			color: $text-highlight;
-		}
+		color: $text-highlight;
 	}
 }
 
@@ -94,7 +112,7 @@
 	width: 280px;
 	height: fit-content;
 	padding: 3px;
-	z-index: 100;
+	z-index: 600;
 
 	@media screen and (max-width: 1440px) {
 		width: 200px;
@@ -117,7 +135,6 @@
 .nav-button {
 	cursor: pointer;
 	opacity: 0.6;
-	z-index: 1100;
 
 	&:hover {
 		opacity: 0.8;

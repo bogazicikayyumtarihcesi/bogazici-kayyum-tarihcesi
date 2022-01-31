@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useEffect } from "react";
 import { Link } from "react-router-dom";
 
 import EventCarousel from "../../components/eventcarousel";
@@ -10,6 +10,8 @@ import LargeInfoCard from "../../components/largeinfocard";
 import { LeftFrameToggleButton } from "../../components/leftframetogglebutton";
 import { useChronology } from "./useChronology";
 import { KayyumMeter } from "../../components/kayyummeter";
+
+import fitty from "fitty";
 
 import "./Chronology.scss";
 
@@ -34,7 +36,7 @@ export const Chronology = () => {
 		paginationProps,
 	} = props;
 
-	const leftFrameStyle = leftFrameProps.leftFrameOpen ? "left-frame-open" : ""
+	const leftFrameStyle = leftFrameProps.leftFrameOpen ? "left-frame-open" : "";
 
 	return (
 		<div id="chronology">
@@ -44,26 +46,34 @@ export const Chronology = () => {
 				<LeftFrame {...leftFrameProps} />
 
 				<div className="main-frame-right" tabIndex="-1" onKeyUp={handleArrowPress}>
-					<div className="about-button">
-						<Link to="/about">?</Link>
-					</div>
-					{window.innerWidth > 960 ? renderNavArrows() : null}
-
+					<Link to="/about">
+						<div className="about-button">?</div>
+					</Link>
 					<LargeInfoCard
 						{...infoCardContent}
 						getDisplayDate={getDisplayDate}
 						visibilityModifier={backdropOpen ? " show" : ""}
+						setBackdropOpen={setBackdropOpen}
+						windowWidth={windowWidth}
 					/>
 					{backdropOpen ? (
 						<div className="backdrop" onClick={() => setBackdropOpen(false)}></div>
 					) : null}
 
 					<div className="main-header-container">
-						<div className={`main-header  ${leftFrameStyle}`}>Boğaziçi Kayyum Tarihçesi</div>
+						<div className="main-header-inner-container">
+							<div className={`main-header  ${leftFrameStyle}`}>
+								Boğaziçi Kayyum Tarihçesi
+							</div>
+						</div>
 					</div>
 
 					{windowWidth > 960 ? (
-						<EventCarousel {...carouselProps} getDisplayDate={getDisplayDate} />
+						<EventCarousel
+							{...carouselProps}
+							renderNavArrows={renderNavArrows}
+							getDisplayDate={getDisplayDate}
+						/>
 					) : (
 						<MobileCarousel {...mobileCarouselProps} getDisplayDate={getDisplayDate} />
 					)}

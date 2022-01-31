@@ -12,24 +12,37 @@
 	overflow-y: auto;
 }
 
+.readme-header-container {
+	position: relative;
+	width: 100%;
+	height: fit-content;
+	margin: 40px auto 5px auto;
+
+	text-align: center;
+
+}
 .readme-header {
 	@include readme-header-text;
-	margin-top: 50px;
+	@include fitty;
+	padding: 0px 10px;
+
+	height: fit-content;
+	vertical-align: middle;
 }
 
 .readme-text {
 	width: 100%;
-	padding: 30px 40px;
+	padding: 10px 40px;
 	text-indent: 5%;
 	p {
 		@include readme-text;
 		padding-bottom: 15px;
 	}
 	@media (max-width: 530px) {
-		padding: 30px 30px;
+		padding: 10px 30px;
 	}
 	@media (max-width: 400px) {
-		padding: 30px 20px;
+		padding: 10px 20px;
 	}
 }
 

@@ -1,6 +1,6 @@
 import { useState } from "react";
 import imagesDictionary from "../assets/imagesDictionary.json";
-import { handleTouchEventChange, handleScrollEventChange } from "../util/eventUtils";
+import { handleScrollEventChange } from "../util/eventUtils";
 import { ShareCopy } from "./sharecopy.js";
 import { placeholder } from "../assets";
 
@@ -14,12 +14,6 @@ const TimelineItemComponent = ({
 	getDisplayDate,
 	windowWidth,
 }) => {
-	const [touchDistance, setTouchDistance] = useState({
-		start: 0,
-		end: 0,
-		deltaY: 0,
-	});
-
 	const { date, title, summary, identifier } = item;
 	const displayDate = getDisplayDate(date);
 

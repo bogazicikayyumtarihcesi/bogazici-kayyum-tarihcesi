@@ -13,6 +13,7 @@ const EventCarousel = ({
 	setBackdropOpen,
 	setInfoCardContent,
 	getDisplayDate,
+	renderNavArrows,
 }) => {
 	const [windowWidth, windowHeight] = useWindowResize();
 
@@ -101,6 +102,7 @@ const EventCarousel = ({
 					</React.Fragment>
 				);
 			})}
+			{renderNavArrows()}
 		</div>
 	);
 };

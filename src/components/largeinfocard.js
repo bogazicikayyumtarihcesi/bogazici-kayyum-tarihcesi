@@ -18,6 +18,8 @@ const LargeInfoCard = ({
 	identifier,
 	date,
 	getDisplayDate,
+	windowWidth,
+	setBackdropOpen,
 }) => {
 	const [imageIndex, setImageIndex] = useState(0);
 	const [showFullSize, setShowFullSize] = useState(false);
@@ -71,7 +73,7 @@ const LargeInfoCard = ({
 		observeParents: true,
 		// speed: 3000,
 		spaceBetween: 0,
-		autoplay: true,
+		autoplay: showFullSize ? false :true,
 		grabCursor: false,
 		slidesPerView: 1,
 		centeredSlides: true,
@@ -96,6 +98,11 @@ const LargeInfoCard = ({
 			<div className={`large-card-container${visibilityModifier}`}>
 				<div className="large-card-body">
 					<div className="large-card-header">
+						{windowWidth < 600 ? (
+							<span className="close-button" onClick={() => setBackdropOpen(false)}>
+								✖
+							</span>
+						) : null}
 						<ShareCopy className={"large-card-date"} content={displayDate} />
 						<div className="large-card-title">{title}</div>
 					</div>
@@ -103,7 +110,6 @@ const LargeInfoCard = ({
 						<Swiper {...swiperOptions}>{displayCardItems()}</Swiper>
 					</div>
 					<div className="large-card-text-container">
-						{/* <h3>{subtitle}</h3> */}
 						<div>
 							{body.split("¶").map((item, index) => (
 								<p key={index}>{item}</p>

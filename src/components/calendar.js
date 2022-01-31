@@ -78,12 +78,14 @@ export const Calendar = ({
 	aspectRatio,
 	windowHeight,
 }) => {
+	const calendarOuterContainerRef = useRef();
 	const selectedMonthRef = useRef();
 	const selectedSingleEventRef = useRef();
 	const calendarFrameRef = useRef();
 
 	const [nodeHoverState, setNodeHoverState] = useState(false);
 
+	const containerHeight = calendarOuterContainerRef.current?.offsetHeight;
 	const buffer = 500;
 	const gap = 50;
 
@@ -102,10 +104,10 @@ export const Calendar = ({
 	let calendarNodes = [];
 
 	// CALENDAR WITH EXTRA MONTHS
-	for (let year = firstEvent.year - 1; year <= lastEvent.year + 1; year++) {
+	for (let year = firstEvent.year - 1; year <= lastEvent.year; year++) {
 		for (
 			let month = year === firstEvent.year - 1 ? 11 : 1;
-			month <= (year === lastEvent.year + 1 ? 8 : 12);
+			month <= (year === lastEvent.year ? 8 : 12);
 			month++
 		) {
 			calendarNodes.push({ year, month, events: [] });
@@ -169,13 +171,20 @@ export const Calendar = ({
 			let isYear = Number(item.month) === 1;
 			let eventListScrollLimit = 4;
 
-			if (aspectRatio >= 2 || windowHeight <= 920) {
+			if (containerHeight <= 211) {
 				eventListScrollLimit = 3;
-			} else if (aspectRatio >= 2.01 || windowHeight <= 787) {
+			} else if (containerHeight <= 190) {
 				eventListScrollLimit = 2;
-			} else if (aspectRatio >= 2.47 || windowHeight <= 666) {
+			} else if (containerHeight <= 165) {
 				eventListScrollLimit = 1;
 			}
+			// if (aspectRatio >= 2 || windowHeight <= 920) {
+			// 	eventListScrollLimit = 3;
+			// } else if (aspectRatio >= 2.01 || windowHeight <= 787) {
+			// 	eventListScrollLimit = 2;
+			// } else if (aspectRatio >= 2.47 || windowHeight <= 666) {
+			// 	eventListScrollLimit = 1;
+			// }
 
 			if (monthFocused) selectMRef = selectedMonthRef;
 
@@ -214,7 +223,7 @@ export const Calendar = ({
 							>
 								{genBullet(bulletTypes.monthEventful)}
 
-								<div
+								{containerHeight <= 110 ? null : <div
 									className={`calendar-events-container`}
 									style={
 										nodeHoverState && monthFocused ? { opacity: 0.15 } : null
@@ -311,7 +320,7 @@ export const Calendar = ({
 											);
 										})}
 									</div>
-								</div>
+								</div>}
 							</span>
 						) : null}
 					</span>
@@ -340,7 +349,7 @@ export const Calendar = ({
 	}, [eventIndex, leftFrameOpen]);
 
 	return (
-		<div className="calendar-outer-container">
+		<div className="calendar-outer-container" ref={calendarOuterContainerRef}>
 			<div className="main-date-display">{displayDate}</div>
 			<div
 				className="calendar-container"
