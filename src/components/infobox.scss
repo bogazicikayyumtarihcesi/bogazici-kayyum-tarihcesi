@@ -19,7 +19,6 @@
 	margin: 40px auto 5px auto;
 
 	text-align: center;
-
 }
 .readme-header {
 	@include readme-header-text;
@@ -34,6 +33,7 @@
 	width: 100%;
 	padding: 10px 40px;
 	text-indent: 5%;
+
 	p {
 		@include readme-text;
 		padding-bottom: 15px;
@@ -48,6 +48,7 @@
 
 .readme-text-link {
 	@include link($color: $contrast-color);
+	word-break: keep-all;
 	text-decoration-thickness: 0.5px;
 }
 

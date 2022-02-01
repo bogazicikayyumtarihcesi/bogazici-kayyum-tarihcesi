@@ -68,12 +68,13 @@ $background-gradient: linear-gradient(
 	cursor: pointer;
 	word-break: break-all;
 
-	&:hover, &:active {
+	&:hover,
+	&:active {
 		color: $text-highlight;
 	}
 }
 
-@mixin close-button-text($color:$contrast-shade, $size: 20px) {
+@mixin close-button-text($color: $contrast-shade, $size: 20px) {
 	color: $color;
 	font-family: $title-font;
 	font-weight: 900;

@@ -47,7 +47,7 @@ const TimelineItemComponent = ({
 							<img
 								loading="lazy"
 								src={cardImage}
-								alt={`${title} - ${cardImage}`}
+								alt={title}
 								className="event-card-image"
 								draggable={false}
 							/>

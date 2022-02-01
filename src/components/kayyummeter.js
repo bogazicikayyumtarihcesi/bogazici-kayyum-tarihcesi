@@ -54,7 +54,7 @@ export const KayyumMeter = ({ rawDate }) => {
 			</div>
 			{kelle ? (
 				<div className="kelle-container">
-					<img src={kelle} className="kelle" />
+					<img src={kelle} className="kelle" alt={`${kayyum} kelle-${rando+1}`} />
 				</div>
 			) : null}
 		</div>

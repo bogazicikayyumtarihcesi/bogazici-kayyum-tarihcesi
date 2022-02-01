@@ -25,7 +25,6 @@ export const useChronology = () => {
 	const [infoCardContent, setInfoCardContent] = useState({
 		title: "",
 		date: "",
-		subtitle: "",
 		body: "",
 		links: [],
 		images: [],
@@ -77,9 +76,8 @@ export const useChronology = () => {
 
 	useEffect(() => {
 		const { title, description, summary, links, identifier, date } = timeline[eventIndex];
-		const { subtitle, body } = description;
+		const { body } = description;
 		setInfoCardContent({
-			subtitle,
 			body,
 			links,
 			summary,

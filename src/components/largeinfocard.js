@@ -10,12 +10,10 @@ import "swiper/swiper-bundle.css";
 
 const LargeInfoCard = ({
 	visibilityModifier,
-	subtitle,
 	body,
 	links,
 	images,
 	title,
-	identifier,
 	date,
 	getDisplayDate,
 	windowWidth,
@@ -40,7 +38,7 @@ const LargeInfoCard = ({
 						<img
 							loading="lazy"
 							src={placeholder}
-							alt={`placeholder-${imageIndex}`}
+							alt="placeholder"
 							className="event-card-image placeholder"
 						/>
 					</div>
@@ -54,7 +52,7 @@ const LargeInfoCard = ({
 					key={index}
 					onClick={() => handleImageOpen(index)}
 				>
-					<img className="gallery-image" src={imageLink} alt={`${subtitle}-${index}`} />
+					<img className="gallery-image" src={imageLink} alt={`${title}-${index+1}`} />
 				</div>
 			</SwiperSlide>
 		));
