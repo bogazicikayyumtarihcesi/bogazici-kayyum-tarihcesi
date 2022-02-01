@@ -31,13 +31,11 @@
 	@media (max-height: 500px) {
 		max-width: 400px;
 	}
-
 }
 
 .event-card-content {
 	display: grid;
-	// grid-template-rows: 12% 68% 20%;
-	grid-template-rows: 50px minmax(auto, 68%) 20%;
+	grid-template-rows: 50px minmax(2rem, 68%) 20%;
 
 	width: 100%;
 	height: calc(100% - 26px);
@@ -50,9 +48,6 @@
 	position: relative;
 	height: 50px;
 	display: block;
-
-	// flex-direction: column;
-	// justify-content: flex-end;
 }
 
 .event-card-date {
@@ -60,9 +55,6 @@
 	height: 18px;
 	width: fit-content;
 	margin-left: auto;
-	// position: absolute;
-	// top: 0;
-	// right: 0;
 
 	@media (max-width: 1440px) {
 		font-size: 16px;
@@ -83,7 +75,6 @@
 
 	position: absolute;
 	bottom: 0px;
-	// height: calc(100% - 25px);
 	vertical-align: baseline;
 
 	&:hover {
@@ -118,7 +109,7 @@
 
 	overflow-y: auto;
 
-	@media (max-height:400px) {
+	@media (max-height: 400px) {
 		display: none;
 	}
 
