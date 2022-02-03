@@ -76,15 +76,17 @@ export const InfoBox = () => {
 				<p>
 					Sitede daha hızlı gezinmek için mouse tekerleğini ve sağ-sol yön tuşlarını
 					kullanabilirsiniz. Başlıklara, görsellere veya "Detaylar" tuşuna basarak olayın
-					detay ve kaynaklarını görebilir, sağ üstteki tarihe tıklayarak olayın linkini
+					detay ve kaynaklarını görebilir, sağ üstteki tarihe tıklayarak ilgili olayın linkini
 					hızlıca kopyalayabilir ve paylaşabilirsiniz.
 				</p>
 				<p>
-					Hiçbir maddi destek almadan, tamamen gönüllü ve amatör emek ile hazırlandığı
-					için kronolojide eksikler ve hatalar olacaktır. Ekleme, düzeltme önerilerinizi
-					(web sitesi hakkında teknik öneriler dahil), internette bulunmayan orijinal
-					medyalarınızı (fotoğraf, video, ekran görüntüsü) ve tanıklıklarınızı aşağıdaki
-					kanallardan iletirseniz müteşekkir oluruz.
+					Kaynak kodu açık olarak yayımladığımız bu projeyi hiçbir maddi destek almadan,
+					tamamen gönüllü ve amatör emek ile hazırladığımız için eksikler ve hatalar
+					olacaktır. Ekleme, düzeltme önerilerinizi (web sitesi hakkında teknik öneriler
+					dahil), internette bulunmayan orijinal medyalarınızı (fotoğraf, video, ekran
+					görüntüsü) ve döneme ilişkin tanıklıklarınızı aşağıdaki kanallardan iletirseniz
+					müteşekkir oluruz. Proje hiçbir kar amacı gütmediği için telif hakkı konulu
+					mailler ciddiye alınmayacaktır.
 				</p>
 				<span>E-mail: info@bogazicikayyumtarihcesi.com</span>
 				<br />
