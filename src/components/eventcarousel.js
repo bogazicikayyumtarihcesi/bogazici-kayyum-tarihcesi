@@ -14,6 +14,7 @@ const EventCarousel = ({
 	setInfoCardContent,
 	getDisplayDate,
 	renderNavArrows,
+	showFullSizeImage,
 }) => {
 	const [windowWidth, windowHeight] = useWindowResize();
 
@@ -102,7 +103,7 @@ const EventCarousel = ({
 					</React.Fragment>
 				);
 			})}
-			{renderNavArrows()}
+			{showFullSizeImage ? null : renderNavArrows()}
 		</div>
 	);
 };

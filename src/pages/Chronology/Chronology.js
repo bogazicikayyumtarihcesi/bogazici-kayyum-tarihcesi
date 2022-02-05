@@ -36,6 +36,8 @@ export const Chronology = () => {
 		paginationProps,
 	} = props;
 
+	const {showFullSizeImage, setShowFullSizeImage} = carouselProps;
+
 	const leftFrameStyle = leftFrameProps.leftFrameOpen ? "left-frame-open" : "";
 
 	return (
@@ -55,6 +57,8 @@ export const Chronology = () => {
 						visibilityModifier={backdropOpen ? " show" : ""}
 						setBackdropOpen={setBackdropOpen}
 						windowWidth={windowWidth}
+						showFullSizeImage={showFullSizeImage}
+						setShowFullSizeImage={setShowFullSizeImage}
 					/>
 					{backdropOpen ? (
 						<div className="backdrop" onClick={() => setBackdropOpen(false)}></div>

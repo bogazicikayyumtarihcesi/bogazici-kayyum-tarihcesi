@@ -18,16 +18,17 @@ const LargeInfoCard = ({
 	getDisplayDate,
 	windowWidth,
 	setBackdropOpen,
+	showFullSizeImage, 
+	setShowFullSizeImage
 }) => {
 	const [imageIndex, setImageIndex] = useState(0);
-	const [showFullSize, setShowFullSize] = useState(false);
 	const displayDate = getDisplayDate(date);
 	const handleImageOpen = (index) => {
 		setImageIndex(index);
-		setShowFullSize(true);
+		setShowFullSizeImage(true);
 	};
 	const handleImageClose = () => {
-		setShowFullSize(false);
+		setShowFullSizeImage(false);
 	};
 
 	const displayCardItems = () => {
@@ -45,7 +46,7 @@ const LargeInfoCard = ({
 				</SwiperSlide>
 			);
 		return images.map((imageLink, index) => (
-			<SwiperSlide key={imageLink}>
+			<SwiperSlide key={imageLink + Math.random()}>
 				<div
 					className="gallery-image-container"
 					index={index}
@@ -71,7 +72,7 @@ const LargeInfoCard = ({
 		observeParents: true,
 		// speed: 3000,
 		spaceBetween: 0,
-		autoplay: showFullSize ? false :true,
+		autoplay: showFullSizeImage ? false :true,
 		grabCursor: false,
 		slidesPerView: 1,
 		centeredSlides: true,
@@ -88,7 +89,7 @@ const LargeInfoCard = ({
 
 	return (
 		<>
-			{showFullSize ? (
+			{showFullSizeImage ? (
 				<div className="full-size-image-container" onClick={handleImageClose}>
 					<Swiper {...swiperOptions}>{displayCardItems()}</Swiper>
 				</div>

@@ -18,6 +18,7 @@ export const useChronology = () => {
 	const aspectRatio = windowWidth / windowHeight;
 
 	const [backdropOpen, setBackdropOpen] = useState(!!params.eventOpen);
+	const [showFullSizeImage, setShowFullSizeImage] = useState(false);
 	const [eventIndex, setEventIndex] = useState(initIndex === -1 ? 0 : initIndex);
 	const [mobileIndexOverride, setMobileIndexOverride] = useState(false);
 
@@ -98,6 +99,8 @@ export const useChronology = () => {
 		windowWidth,
 		setEventIndex,
 		setBackdropOpen,
+		showFullSizeImage,
+		setShowFullSizeImage,
 		setInfoCardContent,
 		displayDate,
 	};
