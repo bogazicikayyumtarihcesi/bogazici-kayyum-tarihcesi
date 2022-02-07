@@ -37,7 +37,11 @@ const TimelineItemComponent = ({
 			>
 				<div className="event-card-content">
 					<div className="event-card-header">
-						<ShareCopy className={"event-card-date"} content={displayDate} />
+						<ShareCopy
+							className={"event-card-date"}
+							content={displayDate}
+							identifier={identifier}
+						/>
 						<div className="event-card-title" onClick={handleItemOpen}>
 							{title}
 						</div>

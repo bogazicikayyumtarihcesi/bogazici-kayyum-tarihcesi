@@ -54,7 +54,7 @@ export const InfoBox = () => {
 						geleneğe uygun hareket eden, herkesin benimsediği
 					</a>{" "}
 					biri olduğunu iddia eden bir anlatı Boğaziçi kamuoyunda dolaşmaya, ve zamanında
-					kayyum Özkan'ı desteklemiş öğretim üyeleri tarafından dile getirilmeye başlandı.
+					kayyum Özkan'ı desteklemiş öğretim üyeleri tarafından dile getirilmeye başladı.
 				</p>
 				<p>
 					Özerklik ve demokrasi mücadelesi sırasında toplumsal hafızanın kesintiye

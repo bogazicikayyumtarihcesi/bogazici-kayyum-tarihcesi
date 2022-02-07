@@ -15,11 +15,12 @@ const LargeInfoCard = ({
 	images,
 	title,
 	date,
+	identifier,
 	getDisplayDate,
 	windowWidth,
 	setBackdropOpen,
-	showFullSizeImage, 
-	setShowFullSizeImage
+	showFullSizeImage,
+	setShowFullSizeImage,
 }) => {
 	const [imageIndex, setImageIndex] = useState(0);
 	const displayDate = getDisplayDate(date);
@@ -53,7 +54,7 @@ const LargeInfoCard = ({
 					key={index}
 					onClick={() => handleImageOpen(index)}
 				>
-					<img className="gallery-image" src={imageLink} alt={`${title}-${index+1}`} />
+					<img className="gallery-image" src={imageLink} alt={`${title}-${index + 1}`} />
 				</div>
 			</SwiperSlide>
 		));
@@ -72,7 +73,7 @@ const LargeInfoCard = ({
 		observeParents: true,
 		// speed: 3000,
 		spaceBetween: 0,
-		autoplay: showFullSizeImage ? false :true,
+		autoplay: showFullSizeImage ? false : true,
 		grabCursor: false,
 		slidesPerView: 1,
 		centeredSlides: true,
@@ -102,7 +103,11 @@ const LargeInfoCard = ({
 								✖
 							</span>
 						) : null}
-						<ShareCopy className={"large-card-date"} content={displayDate} />
+						<ShareCopy
+							className={"large-card-date"}
+							content={displayDate}
+							identifier={identifier}
+						/>
 						<div className="large-card-title">{title}</div>
 					</div>
 					<div className="info-gallery">

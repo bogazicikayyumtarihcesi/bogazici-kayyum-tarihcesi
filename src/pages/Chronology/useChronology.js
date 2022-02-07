@@ -48,13 +48,6 @@ export const useChronology = () => {
 		});
 	}, [windowWidth]);
 
-	// useEffect(() => {
-	// 	console.log("FITTY");
-	// 	document.fonts.ready.then(() => {
-	// 		fitty(".readme-header", { maxSize: 42, minSize: 30 });
-	// 	});
-	// }, [windowWidth]);
-
 	useEffect(() => {
 		document.fonts.ready.then(() => {
 			fitty(".main-header", { maxSize: 52, minSize: 20 });

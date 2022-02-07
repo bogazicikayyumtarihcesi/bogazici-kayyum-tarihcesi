@@ -1,10 +1,10 @@
 import { useState } from "react";
 import "./sharecopy.scss";
 
-export const ShareCopy = ({ className, content }) => {
+export const ShareCopy = ({ className, content, identifier }) => {
 	const [displayMessage, setDisplayMessage] = useState(false);
 	const copyLink = () => {
-		const link = document.location.href;
+		const link = `https://bogazicikayyumtarihcesi.com/#/${identifier}`
 		navigator.clipboard.writeText(link);
 		setDisplayMessage(true);
 		setTimeout(() => {
