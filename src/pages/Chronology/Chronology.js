@@ -1,4 +1,4 @@
-import React, { useEffect } from "react";
+import React from "react";
 import { Link } from "react-router-dom";
 
 import EventCarousel from "../../components/eventcarousel";
@@ -10,15 +10,14 @@ import LargeInfoCard from "../../components/largeinfocard";
 import { LeftFrameToggleButton } from "../../components/leftframetogglebutton";
 import { useChronology } from "./useChronology";
 import { KayyumMeter } from "../../components/kayyummeter";
-
-import fitty from "fitty";
+import { InfoBox } from "../../components/infobox";
 
 import "./Chronology.scss";
 
 export const Chronology = () => {
 	const { primitives, props, methods } = useChronology();
 
-	const { infoCardContent, backdropOpen, rawDate, windowWidth } = primitives;
+	const { infoCardContent, backdropOpen, rawDate, windowWidth, landingModal } = primitives;
 
 	const {
 		handleArrowPress,
@@ -26,6 +25,7 @@ export const Chronology = () => {
 		setMainFrameStyles,
 		renderNavArrows,
 		getDisplayDate,
+		setLandingModal,
 	} = methods;
 
 	const {
@@ -36,12 +36,21 @@ export const Chronology = () => {
 		paginationProps,
 	} = props;
 
-	const {showFullSizeImage, setShowFullSizeImage} = carouselProps;
+	const { showFullSizeImage, setShowFullSizeImage } = carouselProps;
 
 	const leftFrameStyle = leftFrameProps.leftFrameOpen ? "left-frame-open" : "";
 
 	return (
 		<div id="chronology">
+			{landingModal && !backdropOpen ? (
+				<div className="landing-modal-container" onClick={() => setLandingModal(false)}>
+					<InfoBox
+						customClass={"landing-modal"}
+						closeButton={true}
+						setLandingModal={setLandingModal}
+					/>
+				</div>
+			) : null}
 			<LeftFrameToggleButton {...leftFrameButtonProps} />
 			<KayyumMeter rawDate={rawDate} />
 			<div className="main-frame" style={setMainFrameStyles()}>

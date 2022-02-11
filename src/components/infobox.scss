@@ -2,7 +2,6 @@
 
 .info-box {
 	@include basic-card;
-	@include flex-center;
 	margin: 20px;
 	flex-direction: column;
 	width: 100%;
@@ -10,6 +9,11 @@
 	min-width: 300px;
 
 	overflow-y: auto;
+}
+
+.info-box > .close-button {
+	top: 4px;
+	right: 16px;
 }
 
 .readme-header-container {

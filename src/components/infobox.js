@@ -5,7 +5,7 @@ import fitty from "fitty";
 
 import "./infobox.scss";
 
-export const InfoBox = () => {
+export const InfoBox = ({ customClass, closeButton, setLandingModal }) => {
 	const [windowWidth, windowHeight] = useWindowResize();
 
 	useEffect(() => {
@@ -15,7 +15,14 @@ export const InfoBox = () => {
 	}, [windowWidth]);
 
 	return (
-		<div className="info-box">
+		<div className={"info-box " + customClass ?? ""} onClick={(event => event.stopPropagation())}>
+			{closeButton && windowWidth < 600 ? (
+				<span className="close-button" 
+				onClick={() => setLandingModal(false)}
+				>
+					✖
+				</span>
+			) : null}
 			<div className="readme-header-container">
 				<div className="readme-header">BOĞAZİÇİ KAYYUM TARİHÇESİ</div>
 			</div>
@@ -76,8 +83,8 @@ export const InfoBox = () => {
 				<p>
 					Sitede daha hızlı gezinmek için mouse tekerleğini ve sağ-sol yön tuşlarını
 					kullanabilirsiniz. Başlıklara, görsellere veya "Detaylar" tuşuna basarak olayın
-					detay ve kaynaklarını görebilir, sağ üstteki tarihe tıklayarak ilgili olayın linkini
-					hızlıca kopyalayabilir ve paylaşabilirsiniz.
+					detay ve kaynaklarını görebilir, sağ üstteki tarihe tıklayarak ilgili olayın
+					linkini hızlıca kopyalayabilir ve paylaşabilirsiniz.
 				</p>
 				<p>
 					Kaynak kodu açık olarak yayımladığımız bu projeyi hiçbir maddi destek almadan,

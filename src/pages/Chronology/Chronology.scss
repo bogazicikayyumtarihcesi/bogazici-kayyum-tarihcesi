@@ -4,6 +4,25 @@
 	@include fill-container;
 }
 
+.landing-modal-container {
+	@include fill-container;
+	@include flex-center;
+	align-items: baseline;
+
+	position: fixed;
+	background: rgba(0, 0, 0, 0.6);
+	z-index: 7000;
+
+}
+
+.landing-modal {
+	position: relative;
+
+	@include hide-scrollbar;
+	// overflow-y: scroll;
+	height: 94%;
+}
+
 .main-frame {
 	@include fill-container;
 

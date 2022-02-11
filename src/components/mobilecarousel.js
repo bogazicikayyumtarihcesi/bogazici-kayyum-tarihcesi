@@ -1,6 +1,5 @@
 import React, { useEffect, useRef, useState } from "react";
 import TimelineItemComponent from "./timelineitemcomponent";
-import { handleScrollEventChange } from "../util/eventUtils";
 
 import "./eventcarousel.scss";
 import { useWindowResize } from "../hooks/useWindowResize";
@@ -39,24 +38,14 @@ const MobileCarousel = ({
 
 	useEffect(() => {
 		if (!slideRef.current) return;
-		
-		const carousel = carouselRef.current;
-		
-		const slideHeight = slideRef.current.getBoundingClientRect().height;
-		
-		const { top: carouselTop, height: carouselHeight } = offsetRef.current;
-		
-		const vPixelGap = vPercentageGap * (carouselHeight / 100);
-		const vPixelOffset = vPixelGap * eventIndex;
-		
-		const topOffset = vPixelOffset + vPixelGap / 2 - carouselTop + slideHeight * eventIndex;
-		
+
 		if (mobileIndexOverride) {
 			slideRef.current.scrollIntoView({ block: "center" });
 			setMobileIndexOverride(false);
 		}
-	}, [mobileIndexOverride, eventIndex, leftFrameOpen, offsetRef.current.width]);
 
+		// eslint-disable-next-line react-hooks/exhaustive-deps
+	}, [mobileIndexOverride, eventIndex, leftFrameOpen, offsetRef.current.width]);
 
 	const setItemStyles = (index) => {
 		const { top, height } = offsetRef.current;
@@ -76,7 +65,9 @@ const MobileCarousel = ({
 		let scrollPosition = carouselRef.current.scrollTop;
 		let itemCount = timeline.length + 2;
 		let itemHeight = totalDistance / itemCount;
-		let selectedEventIndex = Math.round(Math.max(0, scrollPosition - scrollAreaHeight / 3) / itemHeight);
+		let selectedEventIndex = Math.round(
+			Math.max(0, scrollPosition - scrollAreaHeight / 3) / itemHeight
+		);
 		if (eventIndex !== selectedEventIndex) {
 			const nextEventIndex = Math.min(selectedEventIndex, timeline.length - 1);
 			setEventIndex(nextEventIndex);

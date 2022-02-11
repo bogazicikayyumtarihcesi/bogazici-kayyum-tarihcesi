@@ -33,6 +33,8 @@ export const useChronology = () => {
 		identifier: "",
 	});
 
+	const [landingModal, setLandingModal] = useState();
+
 	const parseYear = (dateStr) => Number(dateStr.slice(0, 4));
 	const parseMonth = (dateStr) => Number(dateStr.slice(5, 7));
 	const parseDay = (dateStr) => Number(dateStr.slice(8, 10));
@@ -41,6 +43,14 @@ export const useChronology = () => {
 		`${parseDay(dateStr)} ${monthsDictionary[parseMonth(dateStr) - 1]} ${parseYear(dateStr)}`;
 	let rawDate = timeline[eventIndex].date;
 	let displayDate = getDisplayDate(rawDate);
+
+	useEffect(() => {
+		const result = localStorage.getItem("modal");
+		if (!result) {
+			localStorage.setItem("modal", true);
+			setLandingModal(true);
+		}
+	}, []);
 
 	useEffect(() => {
 		document.fonts.ready.then(() => {
@@ -227,6 +237,7 @@ export const useChronology = () => {
 		windowWidth,
 		windowHeight,
 		aspectRatio,
+		landingModal,
 	};
 
 	const props = {
@@ -242,6 +253,7 @@ export const useChronology = () => {
 		setMainFrameStyles,
 		renderNavArrows,
 		getDisplayDate,
+		setLandingModal,
 	};
 
 	return { primitives, methods, props };

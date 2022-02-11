@@ -1,4 +1,3 @@
-import { useState } from "react";
 import imagesDictionary from "../assets/imagesDictionary.json";
 import { handleScrollEventChange } from "../util/eventUtils";
 import { ShareCopy } from "./sharecopy.js";

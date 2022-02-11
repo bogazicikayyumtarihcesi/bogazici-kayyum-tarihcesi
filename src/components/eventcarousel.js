@@ -54,11 +54,12 @@ const EventCarousel = ({
 			carouselLeft / 5;
 
 		carousel.scrollTo({ left: leftOffset, behavior: "smooth" });
+
+		// eslint-disable-next-line react-hooks/exhaustive-deps
 	}, [eventIndex, leftFrameOpen, offsetRef.current.width]);
 
 	const setItemStyles = (index) => {
-		const { left, width, height } = offsetRef.current;
-		const mobileSlideHeight = height * 0.6;
+		const { left, width } = offsetRef.current;
 		return {
 			left: `calc(${hPercentageGap * index}% + ${left + width / 2 + slideWidth * index}px)`,
 		};

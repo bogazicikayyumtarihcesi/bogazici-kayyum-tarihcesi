@@ -73,6 +73,7 @@ const LargeInfoCard = ({
 		observeParents: true,
 		// speed: 3000,
 		spaceBetween: 0,
+		initialSlide: imageIndex,
 		autoplay: showFullSizeImage ? false : true,
 		grabCursor: false,
 		slidesPerView: 1,
